@@ -1,4 +1,4 @@
-package com.example.admin.angpangii;
+package com.example.admin.angpangii.test;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.admin.angpangii.R;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         // Create the Header
         AccountHeader headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
-                .withHeaderBackground(R.drawable.header2)
+                .withHeaderBackground(R.drawable.header)
                 .addProfiles(
                         prof_huy,
                         prof_linh,
@@ -102,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 .addDrawerItems(
                         item_home,
                         new DividerDrawerItem(),
+                        new SecondaryDrawerItem().withName("Main Function"),
                         item_notice,
                         item_album,
                         item_menu,
