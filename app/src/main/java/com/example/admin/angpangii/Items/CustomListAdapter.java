@@ -1,4 +1,4 @@
-package com.example.admin.angpangii.test;
+package com.example.admin.angpangii.Items;
 
 import android.content.Context;
 import android.util.Log;
@@ -41,12 +41,14 @@ public class CustomListAdapter extends BaseAdapter {
     public long getItemId(int position) {
         return position;
     }
+
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         if (convertView == null) {
             convertView = layoutInflater.inflate(R.layout.status_layout, null);
             holder = new ViewHolder();
             holder.statusImageView = (ImageView) convertView.findViewById(R.id.statusImageId);
+            holder.avatarImageView = (ImageView) convertView.findViewById(R.id.imageAvatar);
             holder.userNameView = (TextView) convertView.findViewById(R.id.userName);
             holder.statusDateView = (TextView) convertView.findViewById(R.id.statusDate);
             holder.statusTextView = (TextView) convertView.findViewById(R.id.statusText);
@@ -59,9 +61,10 @@ public class CustomListAdapter extends BaseAdapter {
         holder.userNameView.setText(status.getUsername());
         holder.statusDateView.setText("Hanoi, " + status.getStatusTime());
         holder.statusTextView.setText(status.getStatusText());
-        int imageId = this.getMipmapResIdByName(status.getStatusImage());
-
-        holder.statusImageView.setImageResource(imageId);
+        int StatusImageId = this.getMipmapResIdByName(status.getStatusImage());
+        int AvatarImageId = this.getMipmapResIdByName(status.getAvatarImage());
+        holder.avatarImageView.setImageResource(AvatarImageId);
+        holder.statusImageView.setImageResource(StatusImageId);
 
         return convertView;
     }
@@ -78,6 +81,7 @@ public class CustomListAdapter extends BaseAdapter {
 
     static class ViewHolder {
         ImageView statusImageView;
+        ImageView avatarImageView;
         TextView userNameView;
         TextView statusDateView;
         TextView statusTextView;

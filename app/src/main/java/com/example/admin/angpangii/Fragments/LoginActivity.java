@@ -1,4 +1,4 @@
-package com.example.admin.angpangii.test;
+package com.example.admin.angpangii.Fragments;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

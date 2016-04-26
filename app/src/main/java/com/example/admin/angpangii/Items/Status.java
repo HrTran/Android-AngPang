@@ -1,4 +1,4 @@
-package com.example.admin.angpangii.test;
+package com.example.admin.angpangii.Items;
 
 import java.util.Date;
 
@@ -7,32 +7,36 @@ import java.util.Date;
  */
 public class Status {
     private String username;
+    private String avatarImage;
     private String statusTime;
     private String statusText;
     private String statusImage;
 
-    public Status(String username, String statusTime ,String statusText, String statusImage) {
+    public Status(String username, String avatarImage,String statusTime ,String statusText, String statusImage) {
         this.username= username;
+        this.avatarImage= avatarImage;
         this.statusTime= statusTime;
         this.statusText= statusText;
         this.statusImage= statusImage;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUsername() { return username; }
+
+    public void setUsername(String username) { this.username = username; }
+
+    public String getAvatarImage() {
+        return avatarImage;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setAvatarImage(String avatarImage) {
+        this.username = avatarImage;
     }
 
     public String getStatusTime() {
         return statusTime;
     }
 
-    public void setStatusTime(String statusTime) {
-        this.statusTime = statusTime;
-    }
+    public void setStatusTime(String statusTime) { this.statusTime = statusTime; }
 
     public String getStatusText() {
         return statusText;

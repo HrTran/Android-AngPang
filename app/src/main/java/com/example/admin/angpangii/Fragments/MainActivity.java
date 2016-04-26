@@ -1,4 +1,4 @@
-package com.example.admin.angpangii.utils;
+package com.example.admin.angpangii.Fragments;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -17,10 +17,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.admin.angpangii.R;
-import com.example.admin.angpangii.test.CustomListAdapter;
-import com.example.admin.angpangii.test.LoginActivity;
-import com.example.admin.angpangii.test.MainActivity;
-import com.example.admin.angpangii.test.Status;
+import com.example.admin.angpangii.Items.CustomListAdapter;
+import com.example.admin.angpangii.Items.Status;
 import com.mikepenz.aboutlibraries.Libs;
 import com.mikepenz.aboutlibraries.LibsBuilder;
 import com.mikepenz.fastadapter.utils.RecyclerViewCacheUtil;
@@ -53,7 +51,7 @@ import java.util.List;
 /**
  * Created by Admin on 4/15/2016.
  */
-public class CrossfadeDrawer extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
     private static final int PROFILE_SETTING = 100000;
     private AccountHeader headerResult = null;
     private Drawer result = null;
@@ -62,14 +60,16 @@ public class CrossfadeDrawer extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sample_dark_toolbar);
+        setContentView(R.layout.main_layout);
 
         // Handle Toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //set the back arrow in the toolbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(R.string.app_name);
+        getSupportActionBar().setTitle("");
+
+
 
         // Create a few sample profile
         // NOTE you have to define the loader logic too. See the CustomApplication for more detail
@@ -132,7 +132,8 @@ public class CrossfadeDrawer extends AppCompatActivity {
         PrimaryDrawerItem item_album = new PrimaryDrawerItem().withName(R.string.drawer_item_album).withIcon(FontAwesome.Icon.faw_eye).withIdentifier(3).withSelectable(false);
         PrimaryDrawerItem item_menu = new PrimaryDrawerItem().withName(R.string.drawer_item_menu).withIcon(GoogleMaterial.Icon.gmd_filter_list).withIdentifier(4).withSelectable(false);
         PrimaryDrawerItem item_bus = new PrimaryDrawerItem().withName(R.string.drawer_item_bus).withIcon(GoogleMaterial.Icon.gmd_my_location).withIdentifier(5).withSelectable(false);
-        SecondaryDrawerItem item_logout = new SecondaryDrawerItem().withName(R.string.drawer_item_logout).withIcon(GoogleMaterial.Icon.gmd_labels).withIdentifier(6).withSelectable(false);
+        PrimaryDrawerItem item_cctv = new PrimaryDrawerItem().withName("CCTV").withIcon(GoogleMaterial.Icon.gmd_my_location).withIdentifier(6).withSelectable(false);
+        SecondaryDrawerItem item_logout = new SecondaryDrawerItem().withName(R.string.drawer_item_logout).withIcon(GoogleMaterial.Icon.gmd_labels).withIdentifier(7).withSelectable(false);
 
         //Create the drawer
         result = new DrawerBuilder()
@@ -149,14 +150,15 @@ public class CrossfadeDrawer extends AppCompatActivity {
                         item_notice,
                         item_album,
                         item_menu,
-                        item_bus
+                        item_bus,
+                        item_cctv
 
                 ) // add the items we want to use with our Drawer
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         if (drawerItem instanceof Nameable) {
-                            Toast.makeText(CrossfadeDrawer.this, ((Nameable) drawerItem).getName().getText(CrossfadeDrawer.this), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, ((Nameable) drawerItem).getName().getText(MainActivity.this), Toast.LENGTH_SHORT).show();
                         }
                         //check if the drawerItem is set.
                         //there are different reasons for the drawerItem to be null
@@ -167,17 +169,25 @@ public class CrossfadeDrawer extends AppCompatActivity {
                         if (drawerItem != null) {
                             Intent intent = null;
                             if (drawerItem.getIdentifier() == 1) {
-                                intent = new Intent(CrossfadeDrawer.this, LoginActivity.class);
+                                intent = new Intent(MainActivity.this, ContactActivity.class);
                             } else if (drawerItem.getIdentifier() == 2) {
-                                intent = new Intent(CrossfadeDrawer.this, MainActivity.class);
+                                intent = new Intent(MainActivity.this, NoticeActivity.class);
                             } else if (drawerItem.getIdentifier() == 3) {
+                                intent = new Intent(MainActivity.this, AlbumActivity.class);
+                            } else if (drawerItem.getIdentifier() == 4) {
+                                intent = new Intent(MainActivity.this, MenuActivity.class);
+                            } else if (drawerItem.getIdentifier() == 5) {
+                                intent = new Intent(MainActivity.this, BusActivity.class);
+                            } else if (drawerItem.getIdentifier() == 6) {
+                                intent = new Intent(MainActivity.this, CCTVActivity.class);
+                            } else if (drawerItem.getIdentifier() == 7) {
                                 intent = new LibsBuilder()
                                         .withFields(R.string.class.getFields())
                                         .withActivityStyle(Libs.ActivityStyle.LIGHT_DARK_TOOLBAR)
-                                        .intent(CrossfadeDrawer.this);
+                                        .intent(MainActivity.this);
                             }
                             if (intent != null) {
-                                CrossfadeDrawer.this.startActivity(intent);
+                                MainActivity.this.startActivity(intent);
                             }
                         }
 
@@ -264,6 +274,10 @@ public class CrossfadeDrawer extends AppCompatActivity {
             }
         });
         */
+        /*
+        * Hien thi stt tren HomeScreen
+        * */
+
         List<Status > image_details = getListData();
         final ListView listView = (ListView) findViewById(R.id.status);
         listView.setAdapter(new CustomListAdapter(this, image_details));
@@ -275,7 +289,7 @@ public class CrossfadeDrawer extends AppCompatActivity {
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
                 Object o = listView.getItemAtPosition(position);
                 Status status = (Status) o;
-                Toast.makeText(CrossfadeDrawer.this, "Selected :" + " " + status, Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "Selected :" + " " + status, Toast.LENGTH_LONG).show();
             }
         });
 
@@ -283,28 +297,37 @@ public class CrossfadeDrawer extends AppCompatActivity {
 
     private  List<Status> getListData() {
         List<Status> list = new ArrayList<Status>();
-        Status stt1 = new Status("Cô giáo Thảo", "21/04/2016", "Ngày đẹp trời", "anh1");
-        Status stt2 = new Status("Cô giáo Nga", "20/04/2016", "Ngày mát trời", "anh1");
-        Status stt3 = new Status("Cô giáo Thu", "19/04/2016", "Ngày xấu trời", "anh1");
-
+        Status stt1 = new Status("Cô giáo Thảo", "ava_null", "21/04/2016", "Ngày đẹp trời", "ls_null");
+        Status stt2 = new Status("Cô giáo Nga", "ava_null", "20/04/2016", "Ngày mát trời", "ls_null");
+        Status stt3 = new Status("Cô giáo Thu", "ava_null", "19/04/2016", "Ngày xấu trời", "ls_null");
+        Status stt4 = new Status("Cô giáo Hà", "ava_null", "19/04/2016", "Ngày đen trời", "ls_null");
+        Status stt5 = new Status("Cô giáo Thủy", "ava_null", "18/04/2016", "Ngày ẩm trời", "ls_null");
+        Status stt6 = new Status("Cô giáo Thúy", "ava_null", "18/04/2016", "Ngày bầu trời", "ls_null");
+        Status stt7 = new Status("Cô giáo Tú", "ava_null", "18/04/2016", "Ngày ông trời", "ls_null");
+        Status stt8 = new Status("", "", "", "  ", "");
 
         list.add(stt1);
         list.add(stt2);
         list.add(stt3);
+        list.add(stt4);
+        list.add(stt5);
+        list.add(stt6);
+        list.add(stt7);
+        list.add(stt8);
 
         return list;
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
         return true;
-    }
+    }*/
 
-    @Override
-    // Menu in header
-    public boolean onOptionsItemSelected(MenuItem item) {
+    //@Override
+    // Menu in toolbar
+    /*public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.menu_1:
@@ -329,7 +352,7 @@ public class CrossfadeDrawer extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
+    }*/
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {

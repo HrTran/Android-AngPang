@@ -6,7 +6,8 @@
         android:layout_width="300dp"
         android:layout_height="140dp"
         android:id="@+id/statusImageId"
-        android:src="@drawable/anh1"
+        android:src="@drawable/ls_null"
+        android:layout_marginLeft="7dp"
         android:layout_below="@+id/statusText"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -16,17 +17,22 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Cô giáo Thảo"
+        android:layout_marginLeft="5dp"
+        android:textStyle="bold"
+        android:textColor="#0254D9"
         android:id="@+id/userName"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignLeft="@+id/statusDate"
+        android:layout_alignStart="@+id/statusDate" />
 
     <TextView
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Một bức ảnh vừa chụp tại nhà trẻ.\n#We are family #SayOhYeah!"
+        android:text="Trạng thái viết tại đây!"
         android:id="@+id/statusText"
+        android:textColor="#000000"
+        android:layout_marginLeft="7dp"
         android:layout_below="@+id/statusDate"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -35,9 +41,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="10am 22/04/2016"
+        android:text="Thời gian hiển thị ở đây"
         android:id="@+id/statusDate"
         android:layout_below="@+id/userName"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_toRightOf="@+id/imageAvatar"
+        android:layout_toEndOf="@+id/imageAvatar" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="7dp"
+        android:id="@+id/imageAvatar"
+        android:src="@drawable/ava_null"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/statusText" />
 </RelativeLayout>
