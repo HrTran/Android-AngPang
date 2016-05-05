@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/imageView1G" android:background="@color/tab_bg_color" android:layout_width="fill_parent" android:layout_height="wrap_content" android:src="@drawable/anh1" />
+    <LinearLayout android:gravity="center_vertical" android:background="@color/tab_bg_color" android:paddingLeft="10.0dip" android:paddingTop="5.0dip" android:paddingRight="10.0dip" android:paddingBottom="5.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <ImageView android:id="@id/imageView2G" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/f1" />
+        <LinearLayout android:orientation="vertical" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_weight="1.0">
+            <TextView android:textStyle="bold" android:textColor="@color/main_color_gray" android:id="@id/textView1G" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Cô giáo Thảo" />
+            <TextView android:textSize="12.0sp" android:textColor="@color/main_color_gray" android:id="@id/textView1G" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="giúp bé học bài :D" />
+            <View android:id="@id/view1G" android:background="@color/main_color_gray" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_marginTop="3.0dip" android:layout_marginBottom="3.0dip" />
+            <LinearLayout android:id="@id/sG" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                <TextView android:textSize="12.0sp" android:textColor="@color/main_color_gray" android:id="@id/textView1G" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="5,780" android:drawableLeft="@drawable/ic_comment" android:drawablePadding="5.0dip" />
+                <TextView android:textSize="12.0sp" android:textColor="@color/main_color_gray" android:id="@id/textView1G" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="30.0dip" android:text="580" android:drawableLeft="@drawable/ic_like" android:drawablePadding="5.0dip" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip">
+            <Button android:id="@id/btnLikeG" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Thích" android:drawableLeft="@drawable/ic_like" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="137dp"
+        android:hint="Bình luận ngay..."
+        android:layout_marginLeft="5dp"
+        android:id="@+id/textView3" />
+
+    <Button android:id="@id/btnCommentG" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="1.0dip" android:text="Bình luận"
+        android:layout_gravity="right" />
+    <View android:id="@id/view1G" android:background="@color/main_color_gray" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_marginTop="3.0dip" android:layout_marginBottom="3.0dip" />
+    <!--<ListView android:id="@id/listG" android:layout_width="fill_parent" android:layout_height="wrap_content" android:cacheColorHint="@color/transparent" android:divider="@color/main_color_gray_light" android:dividerHeight="1.0dip" />-->
+</LinearLayout>

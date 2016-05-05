@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:id="@id/vG" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/img1G" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:src="@drawable/timeline_frame_pic" />
+    <LinearLayout android:orientation="vertical" android:background="@color/tab_bg_color" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginRight="10.0dip">
+        <LinearLayout android:gravity="center_vertical" android:paddingLeft="5.0dip" android:paddingTop="5.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <ImageView android:id="@id/img2G" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/feed_img" />
+            <LinearLayout android:orientation="vertical" android:id="@id/aaG" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip">
+                <TextView android:textSize="16.0sp" android:textColor="@color/main_color_gray" android:id="@id/lbl1G" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tiêu đề" />
+                <TextView android:textSize="13.0sp" android:textColor="@color/main_color_gray" android:id="@id/lbl2G" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Nhận xét" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout android:gravity="center_vertical" android:background="@color/gray_light" android:padding="5.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <TextView android:textColor="@color/main_color_gray" android:id="@id/lblG" android:layout_width="130.0dip" android:layout_height="wrap_content" android:text="07.01.2014" />
+            <View android:id="@id/view1G" android:background="@color/main_color_gray" android:layout_width="1.0dip" android:layout_height="fill_parent" android:layout_marginLeft="0.0dip" android:layout_marginRight="10.0dip" />
+            <TextView android:textSize="16.0sp" android:textColor="@color/main_color_gray" android:id="@id/lblG" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="5" />
+            <ImageView android:id="@id/imageView1G" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:src="@drawable/ic_comment" android:scaleType="fitStart" />
+            <View android:id="@id/view1G" android:background="@color/main_color_gray" android:layout_width="1.0dip" android:layout_height="fill_parent" android:layout_marginLeft="20.0dip" android:layout_marginRight="10.0dip" />
+            <TextView android:textSize="16.0sp" android:textColor="@color/main_color_gray" android:id="@id/lblG" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="25" />
+            <ImageView android:id="@id/imageView1G" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:src="@drawable/ic_like" android:scaleType="fitStart" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

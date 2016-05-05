@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout android:orientation="vertical" android:id="@id/lG" android:background="@color/white_smoke" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ScrollView android:id="@id/mainG" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <LinearLayout android:orientation="vertical" android:id="@id/main1G" android:padding="20.0dip" android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <TextView android:textColor="@color/main_color_gray" android:id="@id/textView1G" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Âm lượng" />
+            <SeekBar android:id="@id/seekBar1G" android:layout_width="fill_parent" android:layout_height="wrap_content" android:progress="60" android:progressDrawable="@drawable/slider_progress_layer" android:thumb="@drawable/slider_thumb" />
+            <TextView android:textColor="@color/main_color_gray" android:id="@id/textView1G" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="20.0dip" android:text="Tốc độ phát" />
+            <LinearLayout android:orientation="horizontal" android:id="@id/llG" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="5.0sp">
+
+
+
+                <TextView android:textStyle="bold" android:textColor="@color/main_color_gray" android:id="@id/lblProgress1G" android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="1x" android:layout_weight="1.0" />
+                <TextView android:textStyle="bold" android:textColor="@color/main_color_gray" android:id="@id/lblProgress2G" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="8x" />
+            </LinearLayout>
+            <SeekBar android:id="@id/seekBar1G" android:layout_width="fill_parent" android:layout_height="wrap_content" android:progress="60" android:progressDrawable="@drawable/slider_progress_layer" android:thumb="@drawable/slider_thumb" />
+            <!--<ProgressBar android:id="@id/progressBar1G" android:layout_width="fill_parent" android:layout_height="wrap_content" android:progressDrawable="@drawable/progress_layer" style="\?android:attr/progressBarStyleHorizontal" />-->
+            <TextView android:textColor="@color/main_color_gray" android:id="@id/textView1G" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="20.0dip" android:layout_marginBottom="10.0dip" android:text="Bật/tắt phụ đề" />
+            <LinearLayout android:id="@id/fG" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                <Switch android:id="@id/switch1G" android:layout_width="wrap_content" android:layout_height="wrap_content"  />
+                <Switch android:id="@id/switch1G" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:checked="true"  />
+            </LinearLayout>
+            <LinearLayout android:gravity="center_vertical" android:id="@id/aG" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="20.0dip" android:layout_marginBottom="10.0dip">
+                <TextView android:textColor="@color/main_color_gray" android:id="@id/textView1G" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="10.0dip" android:text="Lọc âm" />
+                <RadioGroup android:orientation="horizontal" android:id="@id/radioGroup1G" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                    <RadioButton android:id="@id/radio0G" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="10.0dip" android:checked="true" android:button="@drawable/radio_btn" />
+                    <RadioButton android:id="@id/radio1G" android:layout_width="wrap_content" android:layout_height="wrap_content" android:button="@drawable/radio_btn" />
+                </RadioGroup>
+                <TextView android:textColor="@color/main_color_gray" android:id="@id/textView1G" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="30.0dip" android:layout_marginRight="10.0dip" android:text="Ngôn ngữ Việt/Anh" />
+                <CheckBox android:id="@id/checkBox1G" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="10.0dip" android:checked="true" android:button="@drawable/checkbox" />
+                <CheckBox android:id="@id/checkBox2G" android:layout_width="wrap_content" android:layout_height="wrap_content" android:button="@drawable/checkbox" />
+            </LinearLayout>
+            <TextView android:textColor="@color/main_color_gray" android:id="@id/textView1G" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="20.0dip" android:layout_marginBottom="10.0dip" android:text="Giao diện" />
+            <LinearLayout android:orientation="horizontal" android:background="@color/tab_bg_color" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <Button android:enabled="false" android:id="@id/demoTab1G" android:layout_width="0.0dip" android:layout_height="40dp" android:text="Cổ điển" android:layout_weight="1.0" style="\@style/tab_btn" />
+                <View android:id="@id/view1G" android:background="@color/main_color_gray" android:layout_width="1.0dip" android:layout_height="fill_parent" android:layout_marginTop="8.0dip" android:layout_marginBottom="8.0dip" />
+                <Button android:id="@id/demoTab2G" android:layout_width="0.0dip" android:layout_height="40dp" android:text="Sặc sỡ" android:layout_weight="1.0" style="\@style/tab_btn" />
+                <View android:id="@id/view1G" android:background="@color/main_color_gray" android:layout_width="1.0dip" android:layout_height="fill_parent" android:layout_marginTop="8.0dip" android:layout_marginBottom="8.0dip" />
+                <Button android:id="@id/demoTab3G" android:layout_width="0.0dip" android:layout_height="40dp" android:text="Custom" android:layout_weight="1.0" style="\@style/tab_btn" />
+            </LinearLayout>
+            <TextView android:textColor="@color/main_color_gray" android:id="@id/textView1G" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="20.0dip" android:layout_marginBottom="10.0dip" android:text="Chia sẻ trên facebook" />
+            <Button android:id="@id/btnDemoG" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Chia sẻ ngay" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

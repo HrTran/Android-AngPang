@@ -69,6 +69,15 @@
             android:name=".Fragments.NoticeActivity">
         </activity>
 
+        <!-- Setting activity -->
+        <activity
+            android:name=".Fragments.SettingActivity">
+        </activity>
+
+        <!-- Status activity -->
+        <activity
+            android:name=".Fragments.StatusActivity">
+        </activity>
     </application>
 
 

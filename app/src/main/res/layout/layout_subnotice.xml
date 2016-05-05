@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/img1G" android:layout_width="50dp" android:layout_height="50dp" android:src="@drawable/user1"
+        android:layout_alignBottom="@id/img2G"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <TextView android:textStyle="bold" android:textColor="@color/main_color_gray" android:id="@id/lbl1G" android:layout_width="wrap_content" android:layout_height="wrap_content" android:hint="TextView"
+        android:layout_alignTop="@id/img1G"
+        android:layout_toRightOf="@id/img1G"
+        android:layout_toEndOf="@id/img1G" />
+    <TextView android:textColor="@color/main_color_gray_light" android:id="@id/lbl2G" android:layout_width="wrap_content" android:layout_height="wrap_content"
+
+        android:hint="test thu xem the nao, hien thi ra sao"
+        android:layout_alignTop="@id/lbl1G"
+        android:layout_toRightOf="@id/lbl1G"
+        android:layout_toEndOf="@id/lbl1G" />
+    <!--<TextView android:textSize="12.0sp" android:textColor="@color/main_color_gray_light" android:id="@id/lbl3G" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TextView"
+        android:layout_below="@id/lbl1G"
+        android:layout_toRightOf="@id/img1G"
+        android:layout_toEndOf="@id/img1G" />-->
+   <!-- <ImageView android:id="@id/img2G" android:layout_width="80dp" android:layout_height="50dp" android:src="@drawable/animal1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />-->
+
+</RelativeLayout>
+
+    <!--<LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:padding="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content"
+      xmlns:android="http://schemas.android.com/apk/res/android">
+        <ImageView android:id="@id/img1G" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/user1" />
+        <LinearLayout android:orientation="vertical" android:id="@id/bG" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginRight="10.0dip" android:layout_weight="1.0">
+            <LinearLayout android:id="@id/aG" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                <TextView android:textStyle="bold" android:textColor="@color/main_color_gray" android:id="@id/lbl1G" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TextView" />
+                <TextView android:textColor="@color/main_color_gray_light" android:id="@id/lbl2G" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="3.0dip" android:text="TextView" />
+            </LinearLayout>
+
+        </LinearLayout>
+        <ImageView android:id="@id/img2G" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/animal1" />
+    </LinearLayout>-->

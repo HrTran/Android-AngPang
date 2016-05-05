@@ -2,30 +2,24 @@ package com.example.admin.angpangii.Fragments;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.admin.angpangii.Items.MainAdapter;
 import com.example.admin.angpangii.R;
-import com.example.admin.angpangii.Items.CustomListAdapter;
-import com.example.admin.angpangii.Items.Status;
-import com.mikepenz.aboutlibraries.Libs;
-import com.mikepenz.aboutlibraries.LibsBuilder;
 import com.mikepenz.fastadapter.utils.RecyclerViewCacheUtil;
 import com.mikepenz.crossfadedrawerlayout.view.CrossfadeDrawerLayout;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
-import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
@@ -36,7 +30,6 @@ import com.mikepenz.materialdrawer.holder.StringHolder;
 import com.mikepenz.materialdrawer.interfaces.ICrossfader;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
-import com.mikepenz.materialdrawer.model.ProfileSettingDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
@@ -44,9 +37,6 @@ import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 import com.mikepenz.materialdrawer.util.DrawerUIUtils;
 import com.mikepenz.materialize.util.UIUtils;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Admin on 4/15/2016.
@@ -56,73 +46,31 @@ public class MainActivity extends AppCompatActivity {
     private AccountHeader headerResult = null;
     private Drawer result = null;
     private CrossfadeDrawerLayout crossfadeDrawerLayout = null;
+    public static String PACKAGE_NAME;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_layout);
-
+        setContentView(R.layout.activity_main);
+        PACKAGE_NAME = getApplicationContext().getPackageName();
         // Handle Toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //set the back arrow in the toolbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("");
-
-
+        getSupportActionBar().setTitle("Trang chủ");
 
         // Create a few sample profile
         // NOTE you have to define the loader logic too. See the CustomApplication for more detail
-        final IProfile prof_huy = new ProfileDrawerItem()
-                .withName("Trần Tất Huy")
-                .withEmail("huyict58@gmail.com")
-                .withIcon(ResourcesCompat.getDrawable(getResources(), R.drawable.huy_profile, null))
-                .withIdentifier(100);
-        final IProfile prof_linh = new ProfileDrawerItem()
-                .withName("Trần Quang Linh")
-                .withEmail("linhict58@gmail.com")
-                .withIcon(ResourcesCompat.getDrawable(getResources(), R.drawable.linh_profile, null))
-                .withIdentifier(101);
-        final IProfile prof_long = new ProfileDrawerItem()
-                .withName("Nguyễn Thành Long")
-                .withEmail("longict58@gmail.com")
-                .withIcon(ResourcesCompat.getDrawable(getResources(), R.drawable.long_profile, null))
-                .withIdentifier(102);
+        final IProfile prof_huy = new ProfileDrawerItem().withName("Trần Tất Huy").withEmail("huyict58@gmail.com").withIcon(ResourcesCompat.getDrawable(getResources(), R.drawable.huy_profile, null)).withIdentifier(100);
 
         // Create the AccountHeader
         headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
+                .withSelectionListEnabledForSingleProfile(false)
                 .withCompactStyle(true)
                 .withHeaderBackground(R.drawable.header)
-                .addProfiles(
-                        prof_huy,
-                        prof_linh,
-                        prof_long,
-
-                        //don't ask but google uses 14dp for the add account icon in gmail but 20dp for the normal icons (like manage account)
-                        new ProfileSettingDrawerItem().withName("Add Account").withDescription("Add new GitHub Account").withIcon(new IconicsDrawable(this, GoogleMaterial.Icon.gmd_plus).actionBar().paddingDp(5).colorRes(R.color.material_drawer_primary_text)).withIdentifier(PROFILE_SETTING),
-                        new ProfileSettingDrawerItem().withName("Manage Account").withIcon(GoogleMaterial.Icon.gmd_settings).withIdentifier(100001)
-                )
-                .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
-                    @Override
-                    public boolean onProfileChanged(View view, IProfile profile, boolean current) {
-                        //sample usage of the onProfileChanged listener
-                        //if the clicked item has the identifier 1 add a new profile ;)
-                        if (profile instanceof IDrawerItem && profile.getIdentifier() == PROFILE_SETTING) {
-                            int count = 100 + headerResult.getProfiles().size() + 1;
-                            IProfile newProfile = new ProfileDrawerItem().withNameShown(true).withName("Nguyễn Văn Lương" + count).withEmail("luongict58" + count + "@gmail.com").withIcon(R.drawable.luong_profile).withIdentifier(count);
-                            if (headerResult.getProfiles() != null) {
-                                //we know that there are 2 setting elements. set the new profile above them ;)
-                                headerResult.addProfile(newProfile, headerResult.getProfiles().size() - 2);
-                            } else {
-                                headerResult.addProfiles(newProfile);
-                            }
-                        }
-
-                        //false if you have not consumed the event and it should close the drawer
-                        return false;
-                    }
-                })
+                .addProfiles(prof_huy)
                 .withSavedInstance(savedInstanceState)
                 .build();
 
@@ -133,14 +81,14 @@ public class MainActivity extends AppCompatActivity {
         PrimaryDrawerItem item_menu = new PrimaryDrawerItem().withName(R.string.drawer_item_menu).withIcon(GoogleMaterial.Icon.gmd_filter_list).withIdentifier(4).withSelectable(false);
         PrimaryDrawerItem item_bus = new PrimaryDrawerItem().withName(R.string.drawer_item_bus).withIcon(GoogleMaterial.Icon.gmd_my_location).withIdentifier(5).withSelectable(false);
         PrimaryDrawerItem item_cctv = new PrimaryDrawerItem().withName("CCTV").withIcon(GoogleMaterial.Icon.gmd_my_location).withIdentifier(6).withSelectable(false);
-        SecondaryDrawerItem item_logout = new SecondaryDrawerItem().withName(R.string.drawer_item_logout).withIcon(GoogleMaterial.Icon.gmd_labels).withIdentifier(7).withSelectable(false);
+        SecondaryDrawerItem item_logout = new SecondaryDrawerItem().withName(R.string.drawer_item_logout).withIcon(GoogleMaterial.Icon.gmd_labels).withIdentifier(8).withSelectable(false);
 
         //Create the drawer
         result = new DrawerBuilder()
                 .withActivity(this)
                 .withToolbar(toolbar)
                 .withHasStableIds(true)
-                .withDrawerLayout(R.layout.crossfade_drawer)
+                .withDrawerLayout(R.layout.layout_crossfade_navigation_drawer)
                 .withDrawerWidthDp(72)
                 .withGenerateMiniDrawer(true)
                 .withAccountHeader(headerResult) //set the AccountHeader we created earlier for the header
@@ -181,10 +129,11 @@ public class MainActivity extends AppCompatActivity {
                             } else if (drawerItem.getIdentifier() == 6) {
                                 intent = new Intent(MainActivity.this, CCTVActivity.class);
                             } else if (drawerItem.getIdentifier() == 7) {
-                                intent = new LibsBuilder()
+                                /*intent = new LibsBuilder()
                                         .withFields(R.string.class.getFields())
                                         .withActivityStyle(Libs.ActivityStyle.LIGHT_DARK_TOOLBAR)
-                                        .intent(MainActivity.this);
+                                        .intent(MainActivity.this);*/
+                                intent = new Intent(MainActivity.this, SettingActivity.class);
                             }
                             if (intent != null) {
                                 MainActivity.this.startActivity(intent);
@@ -203,7 +152,6 @@ public class MainActivity extends AppCompatActivity {
                 .withSavedInstance(savedInstanceState)
                 .withShowDrawerOnFirstLaunch(true)
                 .build();
-
         //if you have many different types of DrawerItems you can magically pre-cache those items to get a better scroll performance
         //make sure to init the cache after the DrawerBuilder was created as this will first clear the cache to make sure no old elements are in
         //RecyclerViewCacheUtil.getInstance().withCacheSize(2).init(result);
@@ -244,79 +192,57 @@ public class MainActivity extends AppCompatActivity {
         });
         // Number of unseen notices appear next to Notice section on Menu Sidebar
         result.updateBadge(2, new StringHolder(5 + ""));
-        /**
-         * NOTE THIS IS A HIGHLY CUSTOM ANIMATION. USE CAREFULLY.
-         * this animate the height of the profile to the height of the AccountHeader and
-         * animates the height of the drawerItems to the normal drawerItems so the difference between Mini and normal Drawer is eliminated
-         **/
-        /*
-        final double headerHeight = DrawerUIUtils.getOptimalDrawerWidth(this) * 9d / 16d;
-        final double originalProfileHeight = UIUtils.convertDpToPixel(72, this);
-        final double headerDifference = headerHeight - originalProfileHeight;
-        final double originalItemHeight = UIUtils.convertDpToPixel(64, this);
-        final double normalItemHeight = UIUtils.convertDpToPixel(48, this);
-        final double itemDifference = originalItemHeight - normalItemHeight;
-        crossfadeDrawerLayout.withCrossfadeListener(new CrossfadeDrawerLayout.CrossfadeListener() {
-            @Override
-            public void onCrossfade(View containerView, float currentSlidePercentage, int slideOffset) {
-                for (int i = 0; i < miniResult.getAdapter().getItemCount(); i++) {
-                    IDrawerItem drawerItem = miniResult.getAdapter().getItem(i);
-                    if (drawerItem instanceof MiniProfileDrawerItem) {
-                        MiniProfileDrawerItem mpdi = (MiniProfileDrawerItem) drawerItem;
-                        mpdi.withCustomHeightPx((int) (originalProfileHeight + (headerDifference * currentSlidePercentage / 100)));
-                    } else if (drawerItem instanceof MiniDrawerItem) {
-                        MiniDrawerItem mdi = (MiniDrawerItem) drawerItem;
-                        mdi.withCustomHeightPx((int) (originalItemHeight - (itemDifference * currentSlidePercentage / 100)));
-                    }
-                }
 
-                miniResult.getAdapter().notifyDataSetChanged();
+        final TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.bull_fade));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.not_fade));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        final MainAdapter adapter = new MainAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(adapter);
+
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+                tab.getIcon().setColorFilter(Color.parseColor("#ED891F"), PorterDuff.Mode.SRC_IN);
             }
-        });
-        */
-        /*
-        * Hien thi stt tren HomeScreen
-        * */
-
-        List<Status > image_details = getListData();
-        final ListView listView = (ListView) findViewById(R.id.status);
-        listView.setAdapter(new CustomListAdapter(this, image_details));
-
-        // Khi người dùng click vào các ListItem
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
-            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-                Object o = listView.getItemAtPosition(position);
-                Status status = (Status) o;
-                Toast.makeText(MainActivity.this, "Selected :" + " " + status, Toast.LENGTH_LONG).show();
+            public void onTabUnselected(TabLayout.Tab tab) {
+                tab.getIcon().setColorFilter(Color.parseColor("#ffdcd8d8"), PorterDuff.Mode.MULTIPLY);
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
             }
         });
 
+
+
+        // Old code for layout activity_main
+        /*final ImageView btnBulletin = (ImageView)findViewById(R.id.btn_bulletin);
+        final ImageView btnNotice = (ImageView)findViewById(R.id.btn_notice);
+        btnBulletin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnBulletin.setImageResource(R.drawable.bull_act);
+                btnNotice.setImageResource(R.drawable.not_fade);
+            }
+        });
+        btnNotice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnBulletin.setImageResource(R.drawable.bull_fade);
+                btnNotice.setImageResource(R.drawable.not_act);
+            }
+        });*/
     }
 
-    private  List<Status> getListData() {
-        List<Status> list = new ArrayList<Status>();
-        Status stt1 = new Status("Cô giáo Thảo", "ava_null", "21/04/2016", "Ngày đẹp trời", "ls_null");
-        Status stt2 = new Status("Cô giáo Nga", "ava_null", "20/04/2016", "Ngày mát trời", "ls_null");
-        Status stt3 = new Status("Cô giáo Thu", "ava_null", "19/04/2016", "Ngày xấu trời", "ls_null");
-        Status stt4 = new Status("Cô giáo Hà", "ava_null", "19/04/2016", "Ngày đen trời", "ls_null");
-        Status stt5 = new Status("Cô giáo Thủy", "ava_null", "18/04/2016", "Ngày ẩm trời", "ls_null");
-        Status stt6 = new Status("Cô giáo Thúy", "ava_null", "18/04/2016", "Ngày bầu trời", "ls_null");
-        Status stt7 = new Status("Cô giáo Tú", "ava_null", "18/04/2016", "Ngày ông trời", "ls_null");
-        Status stt8 = new Status("", "", "", "  ", "");
 
-        list.add(stt1);
-        list.add(stt2);
-        list.add(stt3);
-        list.add(stt4);
-        list.add(stt5);
-        list.add(stt6);
-        list.add(stt7);
-        list.add(stt8);
-
-        return list;
-    }
 
     /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<android.support.v4.widget.DrawerLayout android:id="@id/drawer_layoutG" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <FrameLayout android:id="@id/content_frameG" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    <ListView android:layout_gravity="left" android:id="@id/left_drawerG" android:background="@color/white" android:layout_width="280.0dip" android:layout_height="fill_parent" android:divider="@color/main_color_gray" android:dividerHeight="1.0dip" android:choiceMode="singleChoice" android:headerDividersEnabled="false" />
+</android.support.v4.widget.DrawerLayout>

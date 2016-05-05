@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout android:gravity="center_vertical" android:orientation="horizontal" android:paddingLeft="@dimen/pad_10dp" android:paddingTop="@dimen/pad_5dp" android:paddingRight="@dimen/pad_10dp" android:paddingBottom="@dimen/pad_5dp" android:layout_width="fill_parent" android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:paddingLeft="@dimen/pad_10dp" android:paddingTop="@dimen/pad_5dp" android:paddingRight="@dimen/pad_10dp" android:paddingBottom="@dimen/pad_5dp" android:layout_width="fill_parent" android:layout_height="wrap_content"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+        <!--Ảnh người đăng-->
+        <!--<ImageView android:id="@+id/img_user_menu" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/user1" />-->
+        <!--Ảnh Thực đơn-->
+        <LinearLayout android:orientation="vertical" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/pad_10dp" android:layout_weight="1.0">
+            <TextView android:id="@+id/lbl_user_menu" android:textSize="@dimen/txt_14sp" android:textStyle="bold" android:textColor="@color/main_gray_dk" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="THỰC ĐƠN NGÀY 5/5/2016" />
+        </LinearLayout>
+    </LinearLayout>
+    <!--Ảnh Thực đơn-->
+    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:paddingLeft="@dimen/pad_10dp" android:paddingTop="@dimen/pad_5dp" android:paddingRight="@dimen/pad_10dp" android:paddingBottom="@dimen/pad_5dp" android:layout_width="fill_parent" android:layout_height="wrap_content">>
+        <ImageView android:id="@+id/img_food1" android:layout_width="60dp" android:layout_height="60dp" android:src="@drawable/supga" />
+        <LinearLayout android:orientation="vertical" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/pad_10dp" android:layout_weight="1.0">
+            <TextView android:id="@+id/lbl_food1" android:textSize="@dimen/txt_14sp" android:textStyle="bold" android:textColor="@color/main_gray_dk" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Súp gà ngô ngọt" />
+            <!--<TextView android:id="@+id/lbl_detail1" android:textSize="@dimen/txt_12sp" android:textColor="@color/main_gray_lt" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TextView" />-->
+        </LinearLayout>
+        <ImageView android:id="@+id/img_food2" android:layout_width="60dp" android:layout_height="60dp" android:src="@drawable/supbido" />
+        <LinearLayout android:orientation="vertical" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/pad_10dp" android:layout_weight="1.0">
+            <TextView android:id="@+id/lbl_food2" android:textSize="@dimen/txt_14sp" android:textStyle="bold" android:textColor="@color/main_gray_dk" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Súp bí đỏ" />
+            <!--<TextView android:id="@+id/lbl_detail2" android:textSize="@dimen/txt_12sp" android:textColor="@color/main_gray_lt" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TextView" />-->
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:paddingLeft="@dimen/pad_10dp" android:paddingTop="@dimen/pad_5dp" android:paddingRight="@dimen/pad_10dp" android:paddingBottom="@dimen/pad_5dp" android:layout_width="fill_parent" android:layout_height="wrap_content">>
+        <ImageView android:id="@+id/img_food3" android:layout_width="60dp" android:layout_height="60dp" android:src="@drawable/trung" />
+        <LinearLayout android:orientation="vertical" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/pad_10dp" android:layout_weight="1.0">
+            <TextView android:id="@+id/lbl_food3" android:textSize="@dimen/txt_14sp" android:textStyle="bold" android:textColor="@color/main_gray_dk" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Trứng" />
+            <!--<TextView android:id="@+id/lbl_detail3" android:textSize="@dimen/txt_12sp" android:textColor="@color/main_gray_lt" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TextView" />-->
+        </LinearLayout>
+        <ImageView android:id="@+id/img_food4" android:layout_width="60dp" android:layout_height="60dp" android:src="@drawable/chuoi" />
+        <LinearLayout android:orientation="vertical" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/pad_10dp" android:layout_weight="1.0">
+            <TextView android:id="@+id/lbl_food4" android:textSize="@dimen/txt_14sp" android:textStyle="bold" android:textColor="@color/main_gray_dk" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Chuối" />
+            <!--<TextView android:id="@+id/lbl_detail4" android:textSize="@dimen/txt_12sp" android:textColor="@color/main_gray_lt" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TextView" />-->
+        </LinearLayout>
+    </LinearLayout>
+    <View android:id="@id/view1G" android:background="@color/main_color_gray" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_marginTop="3.0dip" android:layout_marginBottom="3.0dip" />
+    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:paddingLeft="@dimen/pad_10dp" android:paddingTop="@dimen/pad_5dp" android:paddingRight="@dimen/pad_10dp" android:paddingBottom="@dimen/pad_5dp" android:layout_width="fill_parent" android:layout_height="wrap_content"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+        <!--Ảnh người đăng-->
+        <!--<ImageView android:id="@+id/img_user_menu" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/user1" />-->
+        <!--Ảnh Thực đơn-->
+        <LinearLayout android:orientation="vertical" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/pad_10dp" android:layout_weight="1.0">
+            <TextView android:id="@+id/lbl_user_menu1" android:textSize="@dimen/txt_14sp" android:textStyle="bold" android:textColor="@color/main_gray_dk" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="THỰC ĐƠN NGÀY 4/5/2016" />
+        </LinearLayout>
+    </LinearLayout>
+    <!--Ảnh Thực đơn-->
+    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:paddingLeft="@dimen/pad_10dp" android:paddingTop="@dimen/pad_5dp" android:paddingRight="@dimen/pad_10dp" android:paddingBottom="@dimen/pad_5dp" android:layout_width="fill_parent" android:layout_height="wrap_content">>
+        <ImageView android:id="@+id/img_food11" android:layout_width="60dp" android:layout_height="60dp" android:src="@drawable/supga" />
+        <LinearLayout android:orientation="vertical" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/pad_10dp" android:layout_weight="1.0">
+            <TextView android:id="@+id/lbl_food11" android:textSize="@dimen/txt_14sp" android:textStyle="bold" android:textColor="@color/main_gray_dk" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Súp gà ngô ngọt" />
+            <!--<TextView android:id="@+id/lbl_detail1" android:textSize="@dimen/txt_12sp" android:textColor="@color/main_gray_lt" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TextView" />-->
+        </LinearLayout>
+        <ImageView android:id="@+id/img_food21" android:layout_width="60dp" android:layout_height="60dp" android:src="@drawable/supbido" />
+        <LinearLayout android:orientation="vertical" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/pad_10dp" android:layout_weight="1.0">
+            <TextView android:id="@+id/lbl_food21" android:textSize="@dimen/txt_14sp" android:textStyle="bold" android:textColor="@color/main_gray_dk" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Súp bí đỏ" />
+            <!--<TextView android:id="@+id/lbl_detail2" android:textSize="@dimen/txt_12sp" android:textColor="@color/main_gray_lt" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TextView" />-->
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:paddingLeft="@dimen/pad_10dp" android:paddingTop="@dimen/pad_5dp" android:paddingRight="@dimen/pad_10dp" android:paddingBottom="@dimen/pad_5dp" android:layout_width="fill_parent" android:layout_height="wrap_content">>
+        <ImageView android:id="@+id/img_food31" android:layout_width="60dp" android:layout_height="60dp" android:src="@drawable/trung" />
+        <LinearLayout android:orientation="vertical" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/pad_10dp" android:layout_weight="1.0">
+            <TextView android:id="@+id/lbl_food31" android:textSize="@dimen/txt_14sp" android:textStyle="bold" android:textColor="@color/main_gray_dk" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Trứng" />
+            <!--<TextView android:id="@+id/lbl_detail3" android:textSize="@dimen/txt_12sp" android:textColor="@color/main_gray_lt" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TextView" />-->
+        </LinearLayout>
+        <ImageView android:id="@+id/img_food41" android:layout_width="60dp" android:layout_height="60dp" android:src="@drawable/chuoi" />
+        <LinearLayout android:orientation="vertical" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/pad_10dp" android:layout_weight="1.0">
+            <TextView android:id="@+id/lbl_food41" android:textSize="@dimen/txt_14sp" android:textStyle="bold" android:textColor="@color/main_gray_dk" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Chuối" />
+            <!--<TextView android:id="@+id/lbl_detail4" android:textSize="@dimen/txt_12sp" android:textColor="@color/main_gray_lt" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TextView" />-->
+        </LinearLayout>
+    </LinearLayout>
+</TableLayout>

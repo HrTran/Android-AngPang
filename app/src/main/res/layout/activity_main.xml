@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:textColor="#ffffff"
+            android:layout_gravity="center"
+            android:id="@+id/toolbar_title" />
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:background="#ffffff"
+        android:elevation="6dp"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/tab_layout"/>
+
+
+
+
+
+
+
+
+    <!--<LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:background="#ffffff">
+
+            <ImageView android:id="@+id/btn_bulletin" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/bull_act" android:layout_marginLeft="100dp" android:layout_marginTop="10dp"/>
+
+            <ImageView android:id="@+id/btn_notice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/not_fade" android:layout_marginLeft="100dp" android:layout_marginTop="8dp"/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="1dp"
+        android:layout_height="10dp"
+        android:background="#CDD0D1" />
+    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:paddingLeft="@dimen/pad_10dp" android:paddingTop="@dimen/pad_5dp" android:paddingRight="@dimen/pad_10dp" android:paddingBottom="@dimen/pad_5dp" android:layout_width="fill_parent" android:layout_height="wrap_content" android:background="#ffffff"
+        android:weightSum="1">
+        &lt;!&ndash;Ảnh user&ndash;&gt;
+        <ImageView android:id="@+id/img_user_menu" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/user1" />
+        &lt;!&ndash;text&ndash;&gt;
+        <TextView android:id="@+id/lbl_user_menu" android:textSize="@dimen/txt_14sp" android:textStyle="bold" android:textColor="@color/main_gray_dk" android:layout_width="wrap_content" android:layout_height="wrap_content" android:hint="Bạn muốn chia sẻ gì" android:layout_marginLeft="10dp"
+            android:layout_weight="0.87" />
+
+        <LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/pad_10dp">
+
+            &lt;!&ndash;<ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageButton"
+                android:src="@drawable/pencil_sml"
+                android:layout_gravity="right" />&ndash;&gt;
+
+        </LinearLayout>
+    </LinearLayout>
+    <ListView android:id="@id/listG" android:layout_width="fill_parent" android:layout_height="wrap_content" android:divider="@color/main_color_gray_light" android:dividerHeight="1.0dip" android:background="#ffffff"/>-->
+</LinearLayout>
+
+

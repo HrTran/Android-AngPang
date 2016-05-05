@@ -66,6 +66,30 @@
     <string name="drawer_item_open_source">Open Source</string>
     <string name="drawer_item_contact">Contact</string>
 
-    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et 
+	dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea 
+	takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt 
+	ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, 
+	no sea takimata sanctus est Lorem ipsum dolor sit amet.</string>
+	
+
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="forgot_my_pwd">Forgotten your password?</string>
+    <string name="search">Search</string>
+    <string name="signin">Sign In</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="keep_me_signin">Keep me signed in</string>
+    <string name="no_account">No account?</string>
+    <string name="register_now">Register Now</string>
+    <string name="signout">Sign Out</string>
+    <string name="recipes">Recipes</string>
+    <string name="wine">Wine</string>
+    <string name="profile">Profile</string>
+    <string name="food_detail_txt">"Most food has its origin in plants. Some food is obtained directly from plants . Maize, wheat, and rice – in 
+	all of their varieties – account for 87% of all grain production worldwide.[2] Most of the grain that is produced worldwide is fed to livestock.
+	Some foods not from animal or plant sources include various edible fungi, especially mushrooms. Fungi and ambient bacteria are used in the 
+	preparation of fermented."</string>
 
 </resources>
