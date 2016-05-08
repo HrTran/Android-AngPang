@@ -42,22 +42,22 @@ import com.mikepenz.materialize.util.UIUtils;
  * Created by Admin on 4/15/2016.
  */
 public class MainActivity extends AppCompatActivity {
-    private static final int PROFILE_SETTING = 100000;
+
     private AccountHeader headerResult = null;
     private Drawer result = null;
     private CrossfadeDrawerLayout crossfadeDrawerLayout = null;
-    public static String PACKAGE_NAME;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        PACKAGE_NAME = getApplicationContext().getPackageName();
+
         // Handle Toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //set the back arrow in the toolbar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        /*getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
         getSupportActionBar().setTitle("Trang chủ");
 
         // Create a few sample profile
@@ -65,14 +65,8 @@ public class MainActivity extends AppCompatActivity {
         final IProfile prof_huy = new ProfileDrawerItem().withName("Trần Tất Huy").withEmail("huyict58@gmail.com").withIcon(ResourcesCompat.getDrawable(getResources(), R.drawable.huy_profile, null)).withIdentifier(100);
 
         // Create the AccountHeader
-        headerResult = new AccountHeaderBuilder()
-                .withActivity(this)
-                .withSelectionListEnabledForSingleProfile(false)
-                .withCompactStyle(true)
-                .withHeaderBackground(R.drawable.header)
-                .addProfiles(prof_huy)
-                .withSavedInstance(savedInstanceState)
-                .build();
+        headerResult = new AccountHeaderBuilder().withActivity(this).withSelectionListEnabledForSingleProfile(false).withCompactStyle(true).withTranslucentStatusBar(true)
+                .withHeaderBackground(R.drawable.header).addProfiles(prof_huy).withSavedInstance(savedInstanceState).build();
 
         //List item in Menu Sidebar
         PrimaryDrawerItem item_home = new PrimaryDrawerItem().withName(R.string.drawer_item_home).withIcon(FontAwesome.Icon.faw_home).withIdentifier(1).withSelectable(false);
@@ -81,17 +75,11 @@ public class MainActivity extends AppCompatActivity {
         PrimaryDrawerItem item_menu = new PrimaryDrawerItem().withName(R.string.drawer_item_menu).withIcon(GoogleMaterial.Icon.gmd_filter_list).withIdentifier(4).withSelectable(false);
         PrimaryDrawerItem item_bus = new PrimaryDrawerItem().withName(R.string.drawer_item_bus).withIcon(GoogleMaterial.Icon.gmd_my_location).withIdentifier(5).withSelectable(false);
         PrimaryDrawerItem item_cctv = new PrimaryDrawerItem().withName("CCTV").withIcon(GoogleMaterial.Icon.gmd_my_location).withIdentifier(6).withSelectable(false);
-        SecondaryDrawerItem item_logout = new SecondaryDrawerItem().withName(R.string.drawer_item_logout).withIcon(GoogleMaterial.Icon.gmd_labels).withIdentifier(8).withSelectable(false);
+        PrimaryDrawerItem item_health = new PrimaryDrawerItem().withName("Health Condition").withIcon(GoogleMaterial.Icon.gmd_my_location).withIdentifier(7).withSelectable(false);
+        SecondaryDrawerItem item_logout = new SecondaryDrawerItem().withName(R.string.drawer_item_logout).withIcon(GoogleMaterial.Icon.gmd_labels).withIdentifier(9).withSelectable(false);
 
         //Create the drawer
-        result = new DrawerBuilder()
-                .withActivity(this)
-                .withToolbar(toolbar)
-                .withHasStableIds(true)
-                .withDrawerLayout(R.layout.layout_crossfade_navigation_drawer)
-                .withDrawerWidthDp(72)
-                .withGenerateMiniDrawer(true)
-                .withAccountHeader(headerResult) //set the AccountHeader we created earlier for the header
+        result = new DrawerBuilder().withActivity(this).withToolbar(toolbar).withHasStableIds(true).withDrawerLayout(R.layout.layout_crossfade_navigation_drawer).withDrawerWidthDp(72).withGenerateMiniDrawer(true).withAccountHeader(headerResult) //set the AccountHeader we created earlier for the header
                 .addDrawerItems(
                         item_home,
                         new SectionDrawerItem().withName("Danh mục chức năng"),
@@ -99,7 +87,8 @@ public class MainActivity extends AppCompatActivity {
                         item_album,
                         item_menu,
                         item_bus,
-                        item_cctv
+                        item_cctv,
+                        item_health
 
                 ) // add the items we want to use with our Drawer
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
@@ -116,37 +105,23 @@ public class MainActivity extends AppCompatActivity {
 
                         if (drawerItem != null) {
                             Intent intent = null;
-                            if (drawerItem.getIdentifier() == 1) {
-                                intent = new Intent(MainActivity.this, ContactActivity.class);
-                            } else if (drawerItem.getIdentifier() == 2) {
-                                intent = new Intent(MainActivity.this, NoticeActivity.class);
-                            } else if (drawerItem.getIdentifier() == 3) {
-                                intent = new Intent(MainActivity.this, AlbumActivity.class);
-                            } else if (drawerItem.getIdentifier() == 4) {
-                                intent = new Intent(MainActivity.this, MenuActivity.class);
-                            } else if (drawerItem.getIdentifier() == 5) {
-                                intent = new Intent(MainActivity.this, BusActivity.class);
-                            } else if (drawerItem.getIdentifier() == 6) {
-                                intent = new Intent(MainActivity.this, CCTVActivity.class);
-                            } else if (drawerItem.getIdentifier() == 7) {
-                                /*intent = new LibsBuilder()
-                                        .withFields(R.string.class.getFields())
-                                        .withActivityStyle(Libs.ActivityStyle.LIGHT_DARK_TOOLBAR)
-                                        .intent(MainActivity.this);*/
-                                intent = new Intent(MainActivity.this, SettingActivity.class);
-                            }
-                            if (intent != null) {
-                                MainActivity.this.startActivity(intent);
-                            }
+                            if (drawerItem.getIdentifier() == 1) { intent = new Intent(MainActivity.this, ContactActivity.class); }
+                            else if (drawerItem.getIdentifier() == 2) { intent = new Intent(MainActivity.this, NoticeActivity.class); }
+                            else if (drawerItem.getIdentifier() == 3) { intent = new Intent(MainActivity.this, AlbumActivity.class); }
+                            else if (drawerItem.getIdentifier() == 4) {intent = new Intent(MainActivity.this, MenuActivity.class);}
+                            else if (drawerItem.getIdentifier() == 5) {intent = new Intent(MainActivity.this, BusActivity.class);}
+                            else if (drawerItem.getIdentifier() == 6) {intent = new Intent(MainActivity.this, CCTVActivity.class);}
+                            else if (drawerItem.getIdentifier() == 7) {intent = new Intent(MainActivity.this, HealthActivity.class);}
+                            else if (drawerItem.getIdentifier() == 8) {intent = new Intent(MainActivity.this, SettingActivity.class);}
+                            if (intent != null){ MainActivity.this.startActivity(intent);}
                         }
-
                         //we do not consume the event and want the Drawer to continue with the event chain
                         return false;
                     }
                 })
                 .addStickyDrawerItems(
                         new SectionDrawerItem().withName("Trợ giúp và cài đặt"),
-                        new SecondaryDrawerItem().withName("Cài đặt").withIcon(GoogleMaterial.Icon.gmd_brightness_5).withIdentifier(7).withSelectable(false),
+                        new SecondaryDrawerItem().withName("Cài đặt").withIcon(GoogleMaterial.Icon.gmd_brightness_5).withIdentifier(8).withSelectable(false),
                         item_logout
                 )
                 .withSavedInstance(savedInstanceState)
@@ -155,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
         //if you have many different types of DrawerItems you can magically pre-cache those items to get a better scroll performance
         //make sure to init the cache after the DrawerBuilder was created as this will first clear the cache to make sure no old elements are in
         //RecyclerViewCacheUtil.getInstance().withCacheSize(2).init(result);
-        new RecyclerViewCacheUtil<IDrawerItem>().withCacheSize(2).apply(result.getRecyclerView(), result.getDrawerItems());
+        //new RecyclerViewCacheUtil<IDrawerItem>().withCacheSize(2).apply(result.getRecyclerView(), result.getDrawerItems());
 
         //get the CrossfadeDrawerLayout which will be used as alternative DrawerLayout for the Drawer
         //the CrossfadeDrawerLayout library can be found here: https://github.com/mikepenz/CrossfadeDrawerLayout
@@ -221,25 +196,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-        // Old code for layout activity_main
-        /*final ImageView btnBulletin = (ImageView)findViewById(R.id.btn_bulletin);
-        final ImageView btnNotice = (ImageView)findViewById(R.id.btn_notice);
-        btnBulletin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btnBulletin.setImageResource(R.drawable.bull_act);
-                btnNotice.setImageResource(R.drawable.not_fade);
-            }
-        });
-        btnNotice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btnBulletin.setImageResource(R.drawable.bull_fade);
-                btnNotice.setImageResource(R.drawable.not_act);
-            }
-        });*/
     }
 
 

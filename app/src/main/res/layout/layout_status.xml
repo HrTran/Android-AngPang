@@ -20,7 +20,7 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="137dp"
+        android:layout_height="50dp"
         android:hint="Bình luận ngay..."
         android:layout_marginLeft="5dp"
         android:id="@+id/textView3" />
@@ -28,5 +28,5 @@
     <Button android:id="@id/btnCommentG" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="1.0dip" android:text="Bình luận"
         android:layout_gravity="right" />
     <View android:id="@id/view1G" android:background="@color/main_color_gray" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_marginTop="3.0dip" android:layout_marginBottom="3.0dip" />
-    <!--<ListView android:id="@id/listG" android:layout_width="fill_parent" android:layout_height="wrap_content" android:cacheColorHint="@color/transparent" android:divider="@color/main_color_gray_light" android:dividerHeight="1.0dip" />-->
+    <ListView android:id="@id/listG" android:layout_width="fill_parent" android:layout_height="wrap_content" android:cacheColorHint="@color/transparent" android:divider="@color/main_color_gray_light" android:dividerHeight="1.0dip" />
 </LinearLayout>

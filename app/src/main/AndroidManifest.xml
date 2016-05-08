@@ -78,6 +78,11 @@
         <activity
             android:name=".Fragments.StatusActivity">
         </activity>
+
+        <!-- Health activity -->
+        <activity
+            android:name=".Fragments.HealthActivity">
+        </activity>
     </application>
 
 
