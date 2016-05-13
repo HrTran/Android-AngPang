@@ -14,6 +14,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.admin.angpangii.R;
 
@@ -27,57 +28,92 @@ import java.net.URL;
 
 public class Login2Activity extends AppCompatActivity {
 
-    private String userName = "luong@luong.com";
-    private String password = "1";
+    private String userName;
+    private String password;
+    private String basicAuth = null;
     private boolean remember = true;
+    private Toast toast;
+    private Context context;
 
-    private TextView resultTView;
-    private Button connectBtn;
     private EditText emailText;
     private EditText passwordText;
     private CheckBox rememberCheckBox;
     private Button signInButton;
     private TextView createAccountTView;
+    private TextView resultTView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login2);
-        resultTView = (TextView) findViewById(R.id.resultTView);
-        connectBtn = (Button) findViewById(R.id.connectBtn);
-        connectBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ConnectivityManager connMgr = (ConnectivityManager)
-                        getSystemService(Context.CONNECTIVITY_SERVICE);
-                NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-                if (networkInfo != null && networkInfo.isConnected()) {
-                    new Communicator().execute("http://10.0.3.2:8000/home");
-                } else {
-                    resultTView.setText("No network connection available.");
-                }
-            }
-        });
+
+        context = getApplicationContext();
 
         // get view
         emailText = (EditText) findViewById(R.id.emailText);
         passwordText = (EditText) findViewById(R.id.passwordText);
         rememberCheckBox = (CheckBox) findViewById(R.id.rememberCheckBox);
         signInButton = (Button) findViewById(R.id.signInButton);
+        resultTView = (TextView) findViewById(R.id.resultTView);
         createAccountTView = (TextView) findViewById(R.id.createAccoutTView);
 
         // handle remember checkbox
+        rememberCheckBox.setChecked(true);
         rememberCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                
+                if(isChecked){
+                    remember = true;
+                }else{
+                    remember = false;
+                }
             }
         });
+
+        // handle sign in button
+        signInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                userName = emailText.getText().toString();
+                password = passwordText.getText().toString();
+
+                if(isEmail(userName)){
+                    ConnectivityManager connMgr = (ConnectivityManager)
+                            getSystemService(Context.CONNECTIVITY_SERVICE);
+                    NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+                    if (networkInfo != null && networkInfo.isConnected()) {
+                        new Communicator().execute("http://10.0.3.2:8000/v1/login");
+                    } else {
+                        toast = Toast.makeText(context, "No network connection available.", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                }else{
+                    toast = Toast.makeText(getApplicationContext(), "Invalid email", Toast.LENGTH_LONG);
+                    toast.show();
+                }
+            }
+        });
+    }
+
+    public boolean isEmail(String email) {
+        if(email.indexOf(' ') != -1){
+            // if email has space, return false
+            return false;
+        }
+        if(email.indexOf('.') == -1){
+            // if email don't have . character, return false
+            return false;
+        }
+        if(email.indexOf('@') == -1){
+            // if email don't have @ character, return false
+            return false;
+        }
+        return true;
     }
 
     public String downloadUrl(String myUrl) throws IOException {
         InputStream is = null;
         String userCredential = userName + ":" + password;
-        String basicAuth = "Basic " + new String(
+        basicAuth = "Basic " + new String(
                 Base64.encodeToString(userCredential.getBytes(),
                 Base64.DEFAULT));
         // Only display the first 500 characters of the retrieved
@@ -133,7 +169,13 @@ public class Login2Activity extends AppCompatActivity {
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(String result) {
-            resultTView.setText(result);
+            if(!result.equals("ok")){
+                basicAuth = null;
+                resultTView.setText(result);
+            }else{
+                resultTView.setText("Ok");
+                // TODO: go to main screen
+            }
         }
     }
 
