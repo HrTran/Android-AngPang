@@ -32,7 +32,7 @@
 	takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt 
 	ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, 
 	no sea takimata sanctus est Lorem ipsum dolor sit amet.</string>
-	
+
 
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
@@ -52,5 +52,6 @@
 	all of their varieties – account for 87% of all grain production worldwide.[2] Most of the grain that is produced worldwide is fed to livestock.
 	Some foods not from animal or plant sources include various edible fungi, especially mushrooms. Fungi and ambient bacteria are used in the 
 	preparation of fermented."</string>
+    <string name="title_activity_login2">Login2Activity</string>
 
 </resources>

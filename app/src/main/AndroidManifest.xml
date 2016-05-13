@@ -6,6 +6,9 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <!-- allow the application to access network -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -14,76 +17,65 @@
         android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <!-- Splash screen -->
         <activity
             android:name=".Fragments.SplashStartScreen"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <!-- Main activity -->
         <activity
             android:name=".Fragments.MainActivity"
-            android:theme="@style/MaterialDrawerTheme.TranslucentStatus" >
-        </activity>
+            android:theme="@style/MaterialDrawerTheme.TranslucentStatus"></activity>
 
         <!-- Album activity -->
-        <activity
-            android:name=".Fragments.AlbumActivity">
-        </activity>
+        <activity android:name=".Fragments.AlbumActivity"></activity>
 
         <!-- Bus activity -->
-        <activity
-            android:name=".Fragments.BusActivity">
-        </activity>
+        <activity android:name=".Fragments.BusActivity"></activity>
 
         <!-- CCTV activity -->
-        <activity
-            android:name=".Fragments.CCTVActivity">
-        </activity>
+        <activity android:name=".Fragments.CCTVActivity"></activity>
 
         <!-- Contact activity -->
-        <activity
-            android:name=".Fragments.ContactActivity">
-        </activity>
+        <activity android:name=".Fragments.ContactActivity"></activity>
 
         <!-- Login activity -->
-        <activity
-            android:name=".Fragments.LoginActivity">
-        </activity>
+        <activity android:name=".Fragments.LoginActivity"></activity>
 
         <!-- menu activity -->
-        <activity
-            android:name=".Fragments.MenuActivity">
-        </activity>
+        <activity android:name=".Fragments.MenuActivity"></activity>
 
         <!-- Message activity -->
-        <activity
-            android:name=".Fragments.MessageActivity">
-        </activity>
+        <activity android:name=".Fragments.MessageActivity"></activity>
 
         <!-- Notice activity -->
-        <activity
-            android:name=".Fragments.NoticeActivity">
-        </activity>
+        <activity android:name=".Fragments.NoticeActivity"></activity>
 
         <!-- Setting activity -->
-        <activity
-            android:name=".Fragments.SettingActivity">
-        </activity>
+        <activity android:name=".Fragments.SettingActivity"></activity>
 
         <!-- Status activity -->
-        <activity
-            android:name=".Fragments.StatusActivity">
-        </activity>
+        <activity android:name=".Fragments.StatusActivity"></activity>
 
         <!-- Health activity -->
-        <activity
-            android:name=".Fragments.HealthActivity">
-        </activity>
-    </application>
+        <activity android:name=".Fragments.HealthActivity"></activity>
+        <!--
+ ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 
+        <activity
+            android:name=".Fragments.Login2Activity"
+            android:label="@string/title_activity_login2"></activity>
+    </application>
 
 </manifest>

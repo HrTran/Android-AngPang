@@ -26,7 +26,7 @@
                 <ImageView android:id="@id/imageView1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/logo" />
                 <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/pad_15dp">
                     <Button android:id="@id/btnTw" android:background="@drawable/btn_tw" android:layout_width="wrap_content" android:layout_height="wrap_content" style="@style/btn" />
-                    <Button android:id="@id/btnFb" android:background="@drawable/btn_fb" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/pad_10dp" style="@style/btn" />
+                    <Button android:id="@+id/btnFb" android:background="@drawable/btn_fb" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/pad_10dp" style="@style/btn" />
                 </LinearLayout>
                 <TextView android:textSize="@dimen/txt_16sp" android:textColor="@color/white" android:id="@id/textView1" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/pad_10dp" android:layout_marginBottom="@dimen/pad_5dp" android:text="@string/signin" />
                 <android.support.design.widget.TextInputLayout
