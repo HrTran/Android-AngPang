@@ -4,15 +4,21 @@ package com.example.admin.angpangii.Items;
  * Created by Admin on 5/7/2016.
  */
 public class Health {
-    private String childName;
+    private String childFName;
+    private String childLName;
     private String childAvatar;
-    public Health(String childName, String childAvatar) {
-        this.childName = childName;
+    public Health(String childFName, String childLName, String childAvatar) {
+        this.childFName = childFName;
+        this.childLName = childLName;
         this.childAvatar = childAvatar;
     }
-    public String getChildName() { return childName; }
+    public String getChildFName() { return childFName; }
 
-    public void setChildName(String childName) { this.childName = childName; }
+    public void setChildFName(String childName) { this.childFName = childFName; }
+
+    public String getChildLName() { return childLName; }
+
+    public void setChildLName(String childName) { this.childLName = childLName; }
 
     public String getChildAvatar() {
         return childAvatar;

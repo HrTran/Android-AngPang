@@ -69,26 +69,18 @@ public class MainActivity extends AppCompatActivity {
                 .withHeaderBackground(R.drawable.header).addProfiles(prof_huy).withSavedInstance(savedInstanceState).build();
 
         //List item in Menu Sidebar
-        PrimaryDrawerItem item_home = new PrimaryDrawerItem().withName(R.string.drawer_item_home).withIcon(FontAwesome.Icon.faw_home).withIdentifier(1).withSelectable(false);
-        PrimaryDrawerItem item_notice = new PrimaryDrawerItem().withName(R.string.drawer_item_notice).withIcon(GoogleMaterial.Icon.gmd_disc_full).withIdentifier(2).withSelectable(false).withBadgeStyle(new BadgeStyle().withTextColor(Color.WHITE).withColorRes(R.color.md_red_700));
-        PrimaryDrawerItem item_album = new PrimaryDrawerItem().withName(R.string.drawer_item_album).withIcon(FontAwesome.Icon.faw_eye).withIdentifier(3).withSelectable(false);
-        PrimaryDrawerItem item_menu = new PrimaryDrawerItem().withName(R.string.drawer_item_menu).withIcon(GoogleMaterial.Icon.gmd_filter_list).withIdentifier(4).withSelectable(false);
         PrimaryDrawerItem item_bus = new PrimaryDrawerItem().withName(R.string.drawer_item_bus).withIcon(GoogleMaterial.Icon.gmd_my_location).withIdentifier(5).withSelectable(false);
         PrimaryDrawerItem item_cctv = new PrimaryDrawerItem().withName("CCTV").withIcon(GoogleMaterial.Icon.gmd_my_location).withIdentifier(6).withSelectable(false);
-        PrimaryDrawerItem item_health = new PrimaryDrawerItem().withName("Health Condition").withIcon(GoogleMaterial.Icon.gmd_my_location).withIdentifier(7).withSelectable(false);
-        SecondaryDrawerItem item_logout = new SecondaryDrawerItem().withName(R.string.drawer_item_logout).withIcon(GoogleMaterial.Icon.gmd_labels).withIdentifier(9).withSelectable(false);
+        SecondaryDrawerItem item_logout = new SecondaryDrawerItem().withName("Log out").withIcon(GoogleMaterial.Icon.gmd_labels).withIdentifier(9).withSelectable(false);
 
         //Create the drawer
         result = new DrawerBuilder().withActivity(this).withToolbar(toolbar).withHasStableIds(true).withDrawerLayout(R.layout.layout_crossfade_navigation_drawer).withDrawerWidthDp(72).withGenerateMiniDrawer(true).withAccountHeader(headerResult) //set the AccountHeader we created earlier for the header
                 .addDrawerItems(
-                        item_home,
+                        new PrimaryDrawerItem().withName("Home").withIcon(FontAwesome.Icon.faw_home).withIdentifier(1).withSelectable(false),
                         new SectionDrawerItem().withName("Danh mục chức năng"),
-                        item_notice,
-                        item_album,
-                        item_menu,
-                        item_bus,
-                        item_cctv,
-                        item_health
+                        new PrimaryDrawerItem().withName("Notice").withIcon(GoogleMaterial.Icon.gmd_disc_full).withIdentifier(2).withSelectable(false).withBadgeStyle(new BadgeStyle().withTextColor(Color.WHITE).withColorRes(R.color.md_red_700)),
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_album).withIcon(FontAwesome.Icon.faw_eye).withIdentifier(3).withSelectable(false),
+                        new PrimaryDrawerItem().withName("Daily Menu").withIcon(GoogleMaterial.Icon.gmd_filter_list).withIdentifier(4).withSelectable(false)
 
                 ) // add the items we want to use with our Drawer
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
@@ -106,12 +98,11 @@ public class MainActivity extends AppCompatActivity {
                         if (drawerItem != null) {
                             Intent intent = null;
                             if (drawerItem.getIdentifier() == 1) { intent = new Intent(MainActivity.this, ContactActivity.class); }
-                            else if (drawerItem.getIdentifier() == 2) { intent = new Intent(MainActivity.this, NoticeActivity.class); }
+                            else if (drawerItem.getIdentifier() == 2) { intent = new Intent(MainActivity.this, HealthActivity.class); }
                             else if (drawerItem.getIdentifier() == 3) { intent = new Intent(MainActivity.this, AlbumActivity.class); }
                             else if (drawerItem.getIdentifier() == 4) {intent = new Intent(MainActivity.this, MenuActivity.class);}
                             else if (drawerItem.getIdentifier() == 5) {intent = new Intent(MainActivity.this, BusActivity.class);}
                             else if (drawerItem.getIdentifier() == 6) {intent = new Intent(MainActivity.this, CCTVActivity.class);}
-                            else if (drawerItem.getIdentifier() == 7) {intent = new Intent(MainActivity.this, HealthActivity.class);}
                             else if (drawerItem.getIdentifier() == 8) {intent = new Intent(MainActivity.this, SettingActivity.class);}
                             if (intent != null){ MainActivity.this.startActivity(intent);}
                         }
@@ -120,8 +111,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .addStickyDrawerItems(
-                        new SectionDrawerItem().withName("Trợ giúp và cài đặt"),
-                        new SecondaryDrawerItem().withName("Cài đặt").withIcon(GoogleMaterial.Icon.gmd_brightness_5).withIdentifier(8).withSelectable(false),
+                        new SectionDrawerItem().withName("Help and Setting"),
+                        new SecondaryDrawerItem().withName("Setting").withIcon(GoogleMaterial.Icon.gmd_brightness_5).withIdentifier(8).withSelectable(false),
                         item_logout
                 )
                 .withSavedInstance(savedInstanceState)
@@ -176,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         final MainAdapter adapter = new MainAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
-
+        tabLayout.getTabAt(0).getIcon().setColorFilter(Color.parseColor("#ED891F"), PorterDuff.Mode.SRC_IN);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -184,12 +175,10 @@ public class MainActivity extends AppCompatActivity {
                 viewPager.setCurrentItem(tab.getPosition());
                 tab.getIcon().setColorFilter(Color.parseColor("#ED891F"), PorterDuff.Mode.SRC_IN);
             }
-
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
                 tab.getIcon().setColorFilter(Color.parseColor("#ffdcd8d8"), PorterDuff.Mode.MULTIPLY);
             }
-
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
 
@@ -254,5 +243,6 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
+
 
 }

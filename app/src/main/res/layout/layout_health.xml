@@ -8,14 +8,30 @@
         android:layout_marginLeft="28dp"
         android:layout_marginStart="28dp" />
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:textStyle="bold"
-        android:id="@+id/childName"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="FName"
+            android:textStyle="bold"
+            android:id="@+id/childFName"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="LName"
+            android:textStyle="bold"
+            android:id="@+id/childLName"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
+
 
 </RelativeLayout>

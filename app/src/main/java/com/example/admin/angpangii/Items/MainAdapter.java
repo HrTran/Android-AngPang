@@ -3,6 +3,10 @@ package com.example.admin.angpangii.Items;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+
+import com.example.admin.angpangii.Fragments.TabNoticeActivity;
+import com.example.admin.angpangii.Fragments.TabWallActivity;
+
 /**
  * Created by Admin on 5/3/2016.
  */

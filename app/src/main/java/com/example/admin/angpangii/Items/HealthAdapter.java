@@ -1,6 +1,7 @@
 package com.example.admin.angpangii.Items;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.admin.angpangii.R;
+import com.example.admin.angpangii.utils.HTTPDataHandler;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -20,6 +26,7 @@ public class HealthAdapter extends BaseAdapter {
     private List<Health> listData;
     private LayoutInflater layoutInflater;
     private Context context;
+
 
     public HealthAdapter(Context aContext, List<Health> listData) {
         this.context = aContext;
@@ -48,14 +55,16 @@ public class HealthAdapter extends BaseAdapter {
             convertView = layoutInflater.inflate(R.layout.layout_health, null);
             holder = new ViewHolder();
             holder.childAvatarView = (ImageView) convertView.findViewById(R.id.childAva);
-            holder.childNameView = (TextView) convertView.findViewById(R.id.childName);
+            holder.childFNameView = (TextView) convertView.findViewById(R.id.childFName);
+            holder.childLNameView = (TextView) convertView.findViewById(R.id.childLName);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
         Health health = this.listData.get(position);
-        holder.childNameView.setText(health.getChildName());
+        holder.childFNameView.setText(health.getChildFName());
+        holder.childLNameView.setText(health.getChildLName());
         int avaImage = getDrawableResIdByName(health.getChildAvatar());
         holder.childAvatarView.setImageResource(avaImage);
         return convertView;
@@ -73,6 +82,9 @@ public class HealthAdapter extends BaseAdapter {
 
     public static class ViewHolder {
         ImageView childAvatarView;
-        TextView childNameView;
+        TextView childLNameView;
+        TextView childFNameView;
     }
+
+
 }

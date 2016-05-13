@@ -1,4 +1,4 @@
-package com.example.admin.angpangii.Items;
+package com.example.admin.angpangii.Fragments;
 
 
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.admin.angpangii.Fragments.MainActivity;
+import com.example.admin.angpangii.Items.NoticeAdapter;
+import com.example.admin.angpangii.Items.NoticeItems;
 import com.example.admin.angpangii.R;
 
 import java.util.ArrayList;
@@ -26,7 +28,7 @@ public class TabNoticeActivity extends Fragment{
         /*
         * Hien thi stt tren HomeScreen
         * */
-        List<NoticeItems > notice_details = getListData();
+        List<NoticeItems> notice_details = getListData();
         final ListView listView = (ListView) view.findViewById(R.id.listN);
         listView.setAdapter(new NoticeAdapter(getActivity(), notice_details));
         listView.setFastScrollEnabled(true);

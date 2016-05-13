@@ -1,4 +1,4 @@
-package com.example.admin.angpangii.Items;
+package com.example.admin.angpangii.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import com.example.admin.angpangii.Fragments.LoginActivity;
 import com.example.admin.angpangii.Fragments.StatusActivity;
+import com.example.admin.angpangii.Items.CustomStatusAdapter;
+import com.example.admin.angpangii.Items.Status;
 import com.example.admin.angpangii.R;
 
 import java.util.ArrayList;
@@ -25,15 +27,15 @@ public class TabWallActivity extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_wall, container, false);
         /*
-        * Hien thi stt tren HomeScreen
+        * Display status on Home Activity
         * */
-        List<Status > image_details = getListData();
+        List<Status> image_details = getListData();
         final ListView listView = (ListView) view.findViewById(R.id.listW);
         listView.setAdapter(new CustomStatusAdapter(getActivity(), image_details));
         listView.setFastScrollEnabled(true);
         listView.setScrollingCacheEnabled(false);
 
-        // Khi người dùng click vào các ListItem
+        // When user click in items in listview
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -43,7 +45,7 @@ public class TabWallActivity extends Fragment {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                /* Create an Intent that will start the Main-Activity. */
+                /* Create an Intent that will start the Status-Activity. */
                         Intent mainIntent = new Intent(getActivity(), StatusActivity.class);
                         startActivity(mainIntent);
                         getActivity().finish();
