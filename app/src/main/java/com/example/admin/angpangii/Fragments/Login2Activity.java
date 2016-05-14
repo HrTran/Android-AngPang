@@ -1,6 +1,7 @@
 package com.example.admin.angpangii.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -81,8 +82,14 @@ public class Login2Activity extends AppCompatActivity {
                             getSystemService(Context.CONNECTIVITY_SERVICE);
                     NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
                     if (networkInfo != null && networkInfo.isConnected()) {
+                        // if is connected to network
                         new Communicator().execute("http://10.0.3.2:8000/v1/login");
+                        //if(basicAuth != null) {
+                            // if log in successfully
+
+                        //}
                     } else {
+                        // if not, display a warning
                         toast = Toast.makeText(context, "No network connection available.", Toast.LENGTH_SHORT);
                         toast.show();
                     }
@@ -92,6 +99,13 @@ public class Login2Activity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void goToMainScreen() {
+        Toast.makeText(context, "goto", Toast.LENGTH_LONG);
+        Intent intent = new Intent(Login2Activity.this, MainActivity.class);
+        Login2Activity.this.startActivity(intent);
+        Login2Activity.this.finish();
     }
 
     public boolean isEmail(String email) {
@@ -163,18 +177,20 @@ public class Login2Activity extends AppCompatActivity {
             try {
                 return downloadUrl(urls[0]);
             } catch (IOException e) {
-                return "Unable to retrieve web page. URL may be invalid.";
+                return "0";
             }
         }
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(String result) {
-            if(!result.equals("ok")){
-                basicAuth = null;
-                resultTView.setText(result);
+            char c = result.charAt(0);
+            if(c == '1'){
+                resultTView.setText("\"" + c + "\"");
+                goToMainScreen();
             }else{
-                resultTView.setText("Ok");
                 // TODO: go to main screen
+                basicAuth = null;
+                resultTView.setText("\"" + result + "\"" + c);
             }
         }
     }
