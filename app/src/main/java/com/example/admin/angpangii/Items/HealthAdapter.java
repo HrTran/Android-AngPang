@@ -1,7 +1,6 @@
 package com.example.admin.angpangii.Items;
 
 import android.content.Context;
-import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,11 +12,6 @@ import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.example.admin.angpangii.R;
 import com.example.admin.angpangii.utils.AppController;
-import com.example.admin.angpangii.utils.HTTPDataHandler;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.List;
 

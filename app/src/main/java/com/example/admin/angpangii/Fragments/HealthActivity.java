@@ -9,11 +9,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 
 import com.android.volley.Response;
@@ -24,14 +21,13 @@ import com.example.admin.angpangii.Items.Health;
 import com.example.admin.angpangii.Items.HealthAdapter;
 import com.example.admin.angpangii.R;
 import com.example.admin.angpangii.utils.AppController;
-import com.example.admin.angpangii.utils.HTTPDataHandler;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -41,17 +37,13 @@ public class HealthActivity extends AppCompatActivity implements AdapterView.OnI
     private Spinner spinner;
     // Log tag
     private static final String TAG = MainActivity.class.getSimpleName();
-    private static final String url = "http://10.0.3.2:8000/v1/get/class_list/1";
-    private static final String[]paths = {"Class","Class A1", "Class A2", "Class A3"};
+    private String url;
+    private static final String[]paths = {"Class","Class A1", "Class A2", "Class A3", "Class A4"};
     //private static String urlString;
     private List<Health> childList = new ArrayList<Health>();
     private HealthAdapter HAdapter;
     private ListView listChild;
     private ProgressDialog pDialog;
-    /*// contacts JSONArray
-    JSONArray childName = new JSONArray();
-    // Hashmap for ListView
-    ArrayList<HashMap<String, String>> childList;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -77,50 +69,6 @@ public class HealthActivity extends AppCompatActivity implements AdapterView.OnI
         HAdapter = new HealthAdapter(this, childList);
         listChild.setAdapter(HAdapter);
 
-        pDialog = new ProgressDialog(this);
-        // Showing progress dialog before making http request
-        pDialog.setMessage("Loading...");
-        pDialog.show();
-
-        // Creating volley request obj
-        JsonArrayRequest childReq = new JsonArrayRequest(url,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        Log.d(TAG, response.toString());
-                        hidePDialog();
-
-                        // Parsing json
-                        for (int i = 0; i < response.length(); i++) {
-                            try {
-                                JSONObject obj = response.getJSONObject(i);
-                                Health child = new Health();
-                                child.setChildId(obj.getInt("id"));
-                                String child_fname = obj.getString("fname");
-                                String child_lname = obj.getString("lname");
-                                child.setChildFName(child_fname);
-                                child.setChildLName(child_lname);
-                                childList.add(child);
-                                Log.i("Info: ", "id: " + child.getChildId() + ", fname: " + child.getChildFName()
-                                         + ", lname: " + child.getChildLName() );
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                        // notifying list adapter about data changes
-                        // so that it renders the list view with updated data
-                        HAdapter.notifyDataSetChanged();
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-                hidePDialog();
-            }
-        });
-
-        // Adding request to request queue
-        AppController.getInstance().addToRequestQueue(childReq);
         // Calling async task to get json
         //new ProcessJSON().execute();
     }
@@ -137,20 +85,37 @@ public class HealthActivity extends AppCompatActivity implements AdapterView.OnI
                 break;
             case 1:
                 // Whatever you want to happen when the second item gets selected
-                /*urlString = "http://10.0.3.2:8000/v1/get/class_list/1";
-                new ProcessJSON().execute(urlString);*/
                 listChild.setVisibility(View.VISIBLE);
+                // Clear collection..
+                childList.clear();
+                // Add data to collection..
+                url  = "http://10.0.3.2:8000/v1/get/class_list/1";
+                new ProcessJSON().execute(url);
+                // Refresh your listview..
+                HAdapter.notifyDataSetChanged();
 
                 break;
             case 2:
                 // Whatever you want to happen when the thrid item gets selected
-                listChild.setVisibility(View.INVISIBLE);
-                //urlString = "http://localhost:8000/v1/get/class_list/2";
+                listChild.setVisibility(View.VISIBLE);
+                // Clear collection..
+                childList.clear();
+                // Add data to collection..
+                url  = "http://10.0.3.2:8000/v1/get/class_list/2";
+                new ProcessJSON().execute(url);
+                // Refresh your listview..
+                HAdapter.notifyDataSetChanged();
                 break;
             case 3:
                 // Whatever you want to happen when the thrid item gets selected
-                listChild.setVisibility(View.INVISIBLE);
-                //urlString = "http://localhost:8000/v1/get/class_list/3";
+                listChild.setVisibility(View.VISIBLE);
+                // Clear collection..
+                childList.clear();
+                // Add data to collection..
+                url  = "http://10.0.3.2:8000/v1/get/class_list/3";
+                new ProcessJSON().execute(url);
+                // Refresh your listview..
+                HAdapter.notifyDataSetChanged();
                 break;
         }
 
@@ -186,7 +151,7 @@ public class HealthActivity extends AppCompatActivity implements AdapterView.OnI
             pDialog = null;
         }
     }
-    /*private class ProcessJSON extends AsyncTask<String, Void, Void> {
+    private class ProcessJSON extends AsyncTask<String, Void, Void> {
 
         @Override
         protected void onPreExecute() {
@@ -196,26 +161,64 @@ public class HealthActivity extends AppCompatActivity implements AdapterView.OnI
             pDialog.setMessage("Please wait...");
             pDialog.setCancelable(false);
             pDialog.show();
-
         }
 
         @Override
-        protected Void doInBackground(String... strings){
-            String stream = null;
+        protected Void doInBackground(String... urls){
+            url = urls[0];
+            JsonArrayRequest childReq = new JsonArrayRequest(url,
+                    new Response.Listener<JSONArray>() {
+                        @Override
+                        public void onResponse(JSONArray response) {
+                            Log.d(TAG, response.toString());
+                            hidePDialog();
+
+                            // Parsing json
+                            for (int i = 0; i < response.length(); i++) {
+                                try {
+                                    JSONObject obj = response.getJSONObject(i);
+                                    Health child = new Health();
+                                    child.setChildId(obj.getInt("id"));
+                                    String child_fname = obj.getString("fname");
+                                    String child_lname = obj.getString("lname");
+                                    child.setChildFName(child_fname);
+                                    child.setChildLName(child_lname);
+                                    childList.add(child);
+                                    Log.i("Info: ", "id: " + child.getChildId() + ", fname: " + child.getChildFName()
+                                            + ", lname: " + child.getChildLName() );
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            // notifying list adapter about data changes
+                            // so that it renders the list view with updated data
+                            HAdapter.notifyDataSetChanged();
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    VolleyLog.d(TAG, "Error: " + error.getMessage());
+                    hidePDialog();
+                }
+            });
+
+            AppController.getInstance().addToRequestQueue(childReq);
+
+            /*String stream = null;
             String urlString = strings[0];
 
             HTTPDataHandler hh = new HTTPDataHandler();
             stream = hh.GetHTTPData(urlString);
 
             // Return the data from specified url
-            *//*
+            *//**//*
                 Important in JSON DATA
                 -------------------------
                 * Square bracket ([) represents a JSON array
                 * Curly bracket ({) represents a JSON object
                 * JSON object contains key/value pairs
                 * Each key is a String and value may be different data types
-             *//*
+             *//**//*
 
             //..........Process JSON DATA................
             if(stream !=null){
@@ -242,52 +245,25 @@ public class HealthActivity extends AppCompatActivity implements AdapterView.OnI
                     e.printStackTrace();
                 }
 
-            } // if statement end
+            } // if statement end*/
             return null;
         }
 
-        @Override
+        /*@Override
         protected void onPostExecute(Void result){
             super.onPostExecute(result);
             // Dismiss the progress dialog
             if (pDialog.isShowing())
                 pDialog.dismiss();
-            *//**
+            *//**//**
              * Updating parsed JSON data into ListView
-             * *//*
+             * *//**//*
             ListAdapter adapter = new SimpleAdapter(
                     HealthActivity.this, childList,
                     R.layout.layout_health, new String[] {"fname", "lname"}, new int[] { R.id.childFName,
                     R.id.childLName });
 
             listChild.setAdapter(adapter);
-        } // onPostExecute() end
+        } // onPostExecute() end*/
     } // ProcessJSON class end*/
-
-
-    /*private List<Health> getListData() {
-        List<Health> list = new ArrayList<Health>();
-        Health not1 = new Health("Trần Tất Huy", "f5");
-        Health not2 = new Health("Trần Quang Linh", "f5");
-        Health not3 = new Health("Trần Quang Huy", "f5");
-        Health not4 = new Health("Trần Tất Linh", "f5");
-        Health not5 = new Health("Nguyễn Thành Long", "f5");
-        Health not6 = new Health("Nguyễn Văn Lương", "f5");
-        Health not7 = new Health("Nguyễn Thành Lương", "f5");
-        Health not8 = new Health("Nguyễn Văn Long", "f5");
-
-        list.add(not1);
-        list.add(not2);
-        list.add(not3);
-        list.add(not4);
-        list.add(not5);
-        list.add(not6);
-        list.add(not7);
-        list.add(not8);
-
-        return list;
-    }*/
-
-
-
 }
