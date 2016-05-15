@@ -9,7 +9,9 @@ import android.widget.TextView;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.volley.toolbox.ImageLoader;
 import com.example.admin.angpangii.R;
+import com.example.admin.angpangii.utils.AppController;
 
 import java.util.List;
 
@@ -20,6 +22,7 @@ public class CustomStatusAdapter extends BaseAdapter {
     private List<Status> listData;
     private LayoutInflater layoutInflater;
     private Context context;
+    ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
     public CustomStatusAdapter(Context aContext, List<Status> listData) {
         this.context = aContext;
@@ -65,6 +68,9 @@ public class CustomStatusAdapter extends BaseAdapter {
         int staImage = getDrawableResIdByName(status.getStatusImage());
         holder.avatarImageView.setImageResource(avaImage);
         holder.statusImageView.setImageResource(staImage);
+        //thumbNail.setImageUrl(m.getThumbnailUrl(), imageLoader);
+        //source.setText("Wealth Source: " + String.valueOf(m.getSource()));
+
         /*holder.avatarImageView.getResources().getIdentifier(status.getAvatarImage(), "drawable", MainActivity.PACKAGE_NAME);
         holder.statusImageView.getResources().getIdentifier(status.getStatusImage(), "drawable", MainActivity.PACKAGE_NAME);*/
         return convertView;
@@ -76,7 +82,7 @@ public class CustomStatusAdapter extends BaseAdapter {
 
         // Trả về 0 nếu không tìm thấy.
         int resID = context.getResources().getIdentifier(resName , "drawable", pkgName);
-        Log.i("CustomListView", "Res Name: " + resName + "==> Res ID = " + resID);
+
         return resID;
     }
 

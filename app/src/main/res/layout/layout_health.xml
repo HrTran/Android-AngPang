@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="FName"
+            android:textColor="#000000"
             android:textStyle="bold"
             android:id="@+id/childFName"/>
 
@@ -28,6 +29,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="LName"
             android:textStyle="bold"
+            android:textColor="#000000"
             android:id="@+id/childLName"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"/>
