@@ -36,9 +36,9 @@ import java.util.List;
 public class HealthActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private Spinner spinner;
     // Log tag
-    private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TAG = HealthActivity.class.getSimpleName();
     private String url;
-    private static final String[]paths = {"Class","Class A1", "Class A2", "Class A3", "Class A4"};
+    private static final String[]paths = {"Class","Class A1", "Class A2", "Class A3"};
     //private static String urlString;
     private List<Health> childList = new ArrayList<Health>();
     private HealthAdapter HAdapter;
