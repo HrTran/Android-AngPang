@@ -115,22 +115,22 @@ public class Login2Activity extends AppCompatActivity {
 
     public void getUserInfo (){
 
-        final JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET,
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET,
                 ConnectionInfo.HOST + "/v1/get/user_detail/" + userName,
-                null, new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        resultTView.setText("Response: " + response.toString());
-                        jsonObject =  response;
-                        User.getUser().initUser(basicAuth, jsonObject, context);
-                    }
-                }, new Response.ErrorListener() {
+                (String) null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                resultTView.setText("Response: " + response.toString());
+                jsonObject =  response;
+                User.getUser().initUser(basicAuth, jsonObject, context);
+            }
+        }, new Response.ErrorListener() {
 
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        resultTView.setText(error.toString());
-                    }
-                }){
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                resultTView.setText(error.toString());
+            }
+        }){
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String,String> headers = new HashMap< String, String >();
