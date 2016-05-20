@@ -54,5 +54,6 @@
 	preparation of fermented."</string>
     <string name="title_activity_login2">Login2Activity</string>
     <string name="title_activity_create_post">CreatePost</string>
+    <string name="preference_file_key">remember_user</string>
 
 </resources>

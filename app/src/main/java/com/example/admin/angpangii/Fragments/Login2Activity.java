@@ -8,7 +8,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -114,15 +113,19 @@ public class Login2Activity extends AppCompatActivity {
     }
 
     public void getUserInfo (){
-
+        //JsonObjectRequest jsonObjectRequest = new JsonObjectRequest()
+        String url = ConnectionInfo.HOST + "/v1/get/user_detail/" + userName;
         JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET,
-                ConnectionInfo.HOST + "/v1/get/user_detail/" + userName,
-                (String) null, new Response.Listener<JSONObject>() {
+                url,
+                (JSONObject) null,
+                new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 resultTView.setText("Response: " + response.toString());
                 jsonObject =  response;
                 User.getUser().initUser(basicAuth, jsonObject, context);
+                // save data if user choose to remember checkbox
+                User.getUser().rememberUser(context, remember);
             }
         }, new Response.ErrorListener() {
 
@@ -139,6 +142,7 @@ public class Login2Activity extends AppCompatActivity {
                 return headers;
             }
         };
+
 
         queue.add(jsObjRequest);
     }
@@ -229,7 +233,7 @@ public class Login2Activity extends AppCompatActivity {
             if(c == '1'){
                 resultTView.setText("\"" + c + "\"");
                 getUserInfo();
-                //goToMainScreen();
+                goToMainScreen();
             }else{
                 basicAuth = null;
                 resultTView.setText("\"" + result + "\"" + c);

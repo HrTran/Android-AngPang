@@ -1,11 +1,13 @@
 package com.example.admin.angpangii.Items;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.example.admin.angpangii.R;
 
 import org.json.JSONObject;
 
@@ -25,8 +27,6 @@ public class User {
         try {
             this.id = jsonObject.getInt("id");
             this.type = jsonObject.getInt("type");
-            Log.d("userid", String.valueOf(this.id));
-            Log.d("usertype", String.valueOf(this.type));
         } catch (Exception e) {
             Toast.makeText(context, "Parsing json error", Toast.LENGTH_LONG);
         }
@@ -34,5 +34,53 @@ public class User {
 
     public static User getUser() {
         return user;
+    }
+
+    /**
+     * Save information of user if the remember checkbox is checked
+     * If the checkbox is uncheck the id is saved to -1
+     * @param context
+     * @param remember
+     */
+    public void rememberUser(Context context, boolean remember) {
+        SharedPreferences preferenceSettings = context.getSharedPreferences(
+                context.getString(R.string.preference_file_key),
+                context.MODE_PRIVATE
+        );
+        SharedPreferences.Editor preferenceEditor = preferenceSettings.edit();
+
+        if(remember){
+            preferenceEditor.putString("basicAuth", basicAuth);
+            preferenceEditor.putInt("id", id);
+            preferenceEditor.putInt("type", type);
+        } else {
+            preferenceEditor.putInt("id", -1);
+        }
+
+        preferenceEditor.commit();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public String getBasicAuth() {
+        return basicAuth;
+    }
+
+    public void setBasicAuth(String basicAuth) {
+        this.basicAuth = basicAuth;
     }
 }
