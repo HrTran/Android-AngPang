@@ -37,3 +37,6 @@ Thumbs.db
 
 #NDK
 obj/
+
+# misc file
+.idea/misc.xml
