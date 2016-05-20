@@ -53,5 +53,6 @@
 	Some foods not from animal or plant sources include various edible fungi, especially mushrooms. Fungi and ambient bacteria are used in the 
 	preparation of fermented."</string>
     <string name="title_activity_login2">Login2Activity</string>
+    <string name="title_activity_create_post">CreatePost</string>
 
 </resources>
