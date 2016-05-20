@@ -28,7 +28,7 @@ public class ImageLoadTask extends AsyncTask<Void, Void, Bitmap> {
     protected Bitmap doInBackground(Void... params) {
         try {
             //Tiến hành tạo đối tượng URL
-            URL urlConnection = new URL(url);
+            URL urlConnection = new URL(url.toString());
             //Mở kết nối
             HttpURLConnection connection = (HttpURLConnection) urlConnection
                     .openConnection();

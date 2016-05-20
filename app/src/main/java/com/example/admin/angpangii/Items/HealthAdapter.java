@@ -1,7 +1,6 @@
 package com.example.admin.angpangii.Items;
 
 import android.content.Context;
-import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,12 +9,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.ImageLoader;
 import com.example.admin.angpangii.R;
-import com.example.admin.angpangii.utils.HTTPDataHandler;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.example.admin.angpangii.utils.AppController;
 
 import java.util.List;
 
@@ -26,7 +22,7 @@ public class HealthAdapter extends BaseAdapter {
     private List<Health> listData;
     private LayoutInflater layoutInflater;
     private Context context;
-
+    ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
     public HealthAdapter(Context aContext, List<Health> listData) {
         this.context = aContext;
@@ -51,6 +47,9 @@ public class HealthAdapter extends BaseAdapter {
 
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
+        if (layoutInflater == null)
+            layoutInflater = (LayoutInflater) context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         if (convertView == null) {
             convertView = layoutInflater.inflate(R.layout.layout_health, null);
             holder = new ViewHolder();
@@ -61,12 +60,15 @@ public class HealthAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-
+        //if (imageLoader == null) imageLoader = AppController.getInstance().getImageLoader();
         Health health = this.listData.get(position);
-        holder.childFNameView.setText(health.getChildFName());
-        holder.childLNameView.setText(health.getChildLName());
-        int avaImage = getDrawableResIdByName(health.getChildAvatar());
-        holder.childAvatarView.setImageResource(avaImage);
+        holder.childFNameView.setText(String.valueOf(health.getChildFName()));
+        holder.childLNameView.setText(String.valueOf(health.getChildLName()));
+        /*int avaImage = getDrawableResIdByName(health.getChildAvatar());
+        holder.childAvatarView.setImageResource(avaImage);*/
+        //thumbNail.setImageUrl(m.getThumbnailUrl(), imageLoader);
+        //source.setText("Wealth Source: " + String.valueOf(m.getSource()));
+
         return convertView;
     }
 
