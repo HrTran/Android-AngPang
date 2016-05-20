@@ -9,6 +9,7 @@
     <!-- allow the application to access network -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -31,12 +32,14 @@
         <!-- Main activity -->
         <activity
             android:name=".Fragments.MainActivity"
-            android:theme="@style/MaterialDrawerTheme.TranslucentStatus"
-            android:launchMode="singleTop"></activity>
+            android:launchMode="singleTop"
+            android:theme="@style/MaterialDrawerTheme.TranslucentStatus" />
 
         <!-- Album activity -->
-        <activity android:name=".Fragments.AlbumActivity"
+        <activity
+            android:name=".Fragments.AlbumActivity"
             android:parentActivityName=".Fragments.MainActivity">
+
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -44,8 +47,10 @@
         </activity>
 
         <!-- Bus activity -->
-        <activity android:name=".Fragments.BusActivity"
+        <activity
+            android:name=".Fragments.BusActivity"
             android:parentActivityName=".Fragments.MainActivity">
+
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -53,8 +58,10 @@
         </activity>
 
         <!-- CCTV activity -->
-        <activity android:name=".Fragments.CCTVActivity"
+        <activity
+            android:name=".Fragments.CCTVActivity"
             android:parentActivityName=".Fragments.MainActivity">
+
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -62,8 +69,10 @@
         </activity>
 
         <!-- Contact activity -->
-        <activity android:name=".Fragments.ContactActivity"
+        <activity
+            android:name=".Fragments.ContactActivity"
             android:parentActivityName=".Fragments.MainActivity">
+
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -71,11 +80,13 @@
         </activity>
 
         <!-- Login activity -->
-        <activity android:name=".Fragments.LoginActivity"></activity>
+        <activity android:name=".Fragments.LoginActivity" />
 
         <!-- menu activity -->
-        <activity android:name=".Fragments.MenuActivity"
+        <activity
+            android:name=".Fragments.MenuActivity"
             android:parentActivityName=".Fragments.MainActivity">
+
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -83,14 +94,16 @@
         </activity>
 
         <!-- Message activity -->
-        <activity android:name=".Fragments.MessageActivity"></activity>
+        <activity android:name=".Fragments.MessageActivity" />
 
         <!-- Notice activity -->
-        <activity android:name=".Fragments.NoticeActivity"></activity>
+        <activity android:name=".Fragments.NoticeActivity" />
 
         <!-- Setting activity -->
-        <activity android:name=".Fragments.SettingActivity"
+        <activity
+            android:name=".Fragments.SettingActivity"
             android:parentActivityName=".Fragments.MainActivity">
+
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -98,8 +111,10 @@
         </activity>
 
         <!-- Status activity -->
-        <activity android:name=".Fragments.StatusActivity"
+        <activity
+            android:name=".Fragments.StatusActivity"
             android:parentActivityName=".Fragments.MainActivity">
+
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -107,8 +122,10 @@
         </activity>
 
         <!-- Health activity -->
-        <activity android:name=".Fragments.HealthActivity"
+        <activity
+            android:name=".Fragments.HealthActivity"
             android:parentActivityName=".Fragments.MainActivity">
+
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -124,7 +141,11 @@
 
         <activity
             android:name=".Fragments.Login2Activity"
-            android:label="@string/title_activity_login2"></activity>
+            android:label="@string/title_activity_login2" />
+        <activity android:name=".Fragments.RegisterActivity" />
+        <activity
+            android:name=".Fragments.CreatePost"
+            android:label="@string/title_activity_create_post"></activity>
     </application>
 
 </manifest>
