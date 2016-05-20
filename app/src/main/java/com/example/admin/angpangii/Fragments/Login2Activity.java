@@ -6,9 +6,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -17,7 +17,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.admin.angpangii.Items.User;
 import com.example.admin.angpangii.R;
+import com.example.admin.angpangii.utils.ConnectionInfo;
+
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,6 +37,8 @@ import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Login2Activity extends AppCompatActivity {
 
@@ -35,6 +48,7 @@ public class Login2Activity extends AppCompatActivity {
     private boolean remember = true;
     private Toast toast;
     private Context context;
+    private JSONObject jsonObject;
 
     private EditText emailText;
     private EditText passwordText;
@@ -42,6 +56,7 @@ public class Login2Activity extends AppCompatActivity {
     private Button signInButton;
     private TextView createAccountTView;
     private TextView resultTView;
+    private RequestQueue queue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +71,7 @@ public class Login2Activity extends AppCompatActivity {
         signInButton = (Button) findViewById(R.id.signInButton);
         resultTView = (TextView) findViewById(R.id.resultTView);
         createAccountTView = (TextView) findViewById(R.id.createAccoutTView);
+        queue = Volley.newRequestQueue(this);
 
         // handle remember checkbox
         rememberCheckBox.setChecked(true);
@@ -83,11 +99,7 @@ public class Login2Activity extends AppCompatActivity {
                     NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
                     if (networkInfo != null && networkInfo.isConnected()) {
                         // if is connected to network
-                        new Communicator().execute("http://10.0.3.2:8000/v1/login");
-                        //if(basicAuth != null) {
-                            // if log in successfully
-
-                        //}
+                        new Communicator().execute(ConnectionInfo.HOST + "/v1/login");
                     } else {
                         // if not, display a warning
                         toast = Toast.makeText(context, "No network connection available.", Toast.LENGTH_SHORT);
@@ -99,6 +111,36 @@ public class Login2Activity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void getUserInfo (){
+
+        final JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET,
+                ConnectionInfo.HOST + "/v1/get/user_detail/" + userName,
+                null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        resultTView.setText("Response: " + response.toString());
+                        jsonObject =  response;
+                        User.getUser().initUser(basicAuth, jsonObject, context);
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        resultTView.setText(error.toString());
+                    }
+                }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> headers = new HashMap< String, String >();
+                headers.put("Authorization", basicAuth);
+                headers.put("Content-Type","application/x-www-form-urlencoded");
+                return headers;
+            }
+        };
+
+        queue.add(jsObjRequest);
     }
 
     public void goToMainScreen() {
@@ -186,9 +228,9 @@ public class Login2Activity extends AppCompatActivity {
             char c = result.charAt(0);
             if(c == '1'){
                 resultTView.setText("\"" + c + "\"");
-                goToMainScreen();
+                getUserInfo();
+                //goToMainScreen();
             }else{
-                // TODO: go to main screen
                 basicAuth = null;
                 resultTView.setText("\"" + result + "\"" + c);
             }
