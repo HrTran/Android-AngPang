@@ -3,6 +3,7 @@ package com.example.admin.angpangii.Fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
@@ -84,6 +85,8 @@ public class CreatePost extends Activity {
         delPictureButton = (Button) findViewById(R.id.delPictureButton);
         postButton = (Button) findViewById(R.id.postButton);
 
+        // setup the avatar
+        getAvatar();
         // if user is parent, hide the imageView, spinner and the textView
         if(user.getType() == User.PARENT){
             classSpinner.setVisibility(View.GONE);
@@ -104,8 +107,9 @@ public class CreatePost extends Activity {
              delPictureButton.setOnClickListener(new View.OnClickListener() {
                  @Override
                  public void onClick(View v) {
-                     classSelected = -1;
+                     classSelected = 0;
                      changedPicture = 0;
+                     classSpinner.setSelection(0);
                      imageToUpload.setImageResource(R.drawable.add_photo);
                  }
              });
@@ -117,38 +121,6 @@ public class CreatePost extends Activity {
                 sendPost();
             }
         });
-
-
-        /*
-        bSelectImage = (Button) findViewById(R.id.selectImageToUpload);
-        bUploadImage = (Button) findViewById(R.id.bUploadImage);
-        uploadImageName = (EditText) findViewById(R.id.etUplaodNames);
-        responseTView = (TextView) findViewById(R.id.reponseTView);
-
-        bSelectImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        bUploadImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                image = ((BitmapDrawable) imageToUplaod.getDrawable()).getBitmap();
-                name = uploadImageName.getText().toString();
-                // checking network connection
-                ConnectivityManager connMgr = (ConnectivityManager)
-                        getSystemService(Context.CONNECTIVITY_SERVICE);
-                NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-                if (networkInfo != null && networkInfo.isConnected()) {
-                    makeRequest();
-                } else {
-                    Toast.makeText(getApplicationContext(), "No internet connection", Toast.LENGTH_LONG);
-                }
-            }
-        });
-        */
     }
 
     @Override
@@ -161,20 +133,52 @@ public class CreatePost extends Activity {
         }
     }
 
+    /**
+     * get avatar of user by his id
+     */
+    private void getAvatar() {
+        String url = ConnectionInfo.HOST + "/v1/getavatar/" + User.getUser().getId();
+        ImageRequest request = new ImageRequest(
+                url,
+                new Response.Listener<Bitmap>() {
+                    @Override
+                    public void onResponse(Bitmap bitmap) {
+                        avatar.setImageBitmap(bitmap);
+                    }
+                }, 0, 0, null,
+                new Response.ErrorListener() {
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("load avatar error", error.toString());
+                    }
+                }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> headers = new HashMap < String, String > ();
+                headers.put("Authorization", User.getUser().getBasicAuth());
+                headers.put("Content-Type","application/x-www-form-urlencoded");
+                return headers;
+            }
+        };
+
+        queue.add(request);
+    }
+
     private void sendPost() {
         String status = statusEditText.getText().toString();
-        if(status == null) {
+        //Log.d("status", String.valueOf(status.equals("")));
+        if(status.equals("")) {
             // if the status is empty, notify user
-            Toast.makeText(context, "Error: status is empty", Toast.LENGTH_LONG);
+            Toast.makeText(context, "Error: status is empty", Toast.LENGTH_LONG).show();
             return;
         }
 
         if(changedPicture == 1){
             // if the picture is choose but no class is selected, notify user
-            if(classSelected == -1) {
-                Toast.makeText(context, "Error: a class must be selected", Toast.LENGTH_LONG);
+            if(classSelected == 0) {
+                Toast.makeText(context, "Error: a class must be selected", Toast.LENGTH_LONG).show();
                 return;
             } else {
+                image = ((BitmapDrawable) imageToUpload.getDrawable()).getBitmap();
                 sendPostWithPicture();
             }
         }else {
@@ -183,7 +187,7 @@ public class CreatePost extends Activity {
     }
 
     private void sendPostWithPicture() {
-        String url = ConnectionInfo.HOST + "/v1/post/post/" + User.getUser().getId();
+        String url = ConnectionInfo.HOST + "/v1/create/post";
         StringRequest postRequest = new StringRequest(Request.Method.POST,
                 url,
                 new Response.Listener<String>()
@@ -191,6 +195,8 @@ public class CreatePost extends Activity {
                     @Override
                     public void onResponse(String response) {
                         // response
+                        statusEditText.setText("");
+                        Toast.makeText(context, "Upload post successfully", Toast.LENGTH_LONG).show();
                         Log.d("Response", response);
                     }
                 },
@@ -213,7 +219,10 @@ public class CreatePost extends Activity {
             @Override
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<String, String>();
-                params.put("name","luong");
+                params.put("status", statusEditText.getText().toString());
+                params.put("class_id", String.valueOf(classId[classSelected]));
+                params.put("user_id", String.valueOf(User.getUser().getId()));
+                params.put("type", String.valueOf(2));
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                 image.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
                 String encodedImage = Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT);
@@ -221,20 +230,63 @@ public class CreatePost extends Activity {
                 return params;
             }
         };
+
+        queue.add(postRequest);
     }
 
     private void sendPostWithoutPicture() {
+        String url = ConnectionInfo.HOST + "/v1/create/post";
+        StringRequest postRequest = new StringRequest(Request.Method.POST,
+                url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        Log.d("Response", response);
+                        statusEditText.setText("");
+                        Toast.makeText(context, "Upload post successfully", Toast.LENGTH_LONG).show();
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                    }
+                }
+        ) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> headers = new HashMap < String, String > ();
+                headers.put("Authorization", User.getUser().getBasicAuth());
+                headers.put("Content-Type","application/x-www-form-urlencoded");
+                return headers;
+            }
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("status", statusEditText.getText().toString());
+                params.put("user_id", String.valueOf(User.getUser().getId()));
+                params.put("type", String.valueOf(1));
+                return params;
+            }
+        };
 
+        queue.add(postRequest);
     }
 
     private void parseJson(JSONObject response) {
         try {
             JSONArray classArray = response.getJSONArray("classes");
-            int length = classArray.length();
+            int length = classArray.length() + 1;
             classId = new int[length];
             className = new String[length];
-            for(int i = 0; i < length; i++) {
-                JSONObject tmp = classArray.getJSONObject(i);
+            className[0] = "Class";
+            classId[0] = 0;
+            for(int i = 1; i < length; i++) {
+                JSONObject tmp = classArray.getJSONObject(i-1);
                 classId[i] = tmp.getInt("id");
                 className[i] = tmp.getString("class_name");
             }
@@ -264,7 +316,7 @@ public class CreatePost extends Activity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                classSelected = -1;
+                classSelected = 0;
             }
         });
     }
