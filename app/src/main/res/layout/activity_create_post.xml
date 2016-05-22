@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:weightSum="4"
+    android:weightSum="8"
     android:orientation="vertical"
     tools:context="com.example.admin.angpangii.Fragments.CreatePost">
 
@@ -17,7 +17,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:weightSum="4">
         <LinearLayout
             android:orientation="vertical"
@@ -46,14 +46,16 @@
     
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="horizontal"
+        android:layout_weight="1"
         android:weightSum="4">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Post to:" />
+            android:text="Post to:"
+            android:id="@+id/postTextView" />
 
         <Spinner
             android:layout_width="0dp"
@@ -65,14 +67,30 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:orientation="horizontal">
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:src="@drawable/add_photo"/>
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/add_photo"
+            android:id="@+id/imageToUpload" />
     </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="delete picture"
+        android:textSize="10dp"
+        android:id="@+id/delPictureButton" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="15dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -81,6 +99,7 @@
         android:id="@+id/postButton"
         android:layout_gravity="center_horizontal"
         android:background="#4ab1fa" />
+
 
 </LinearLayout>
 
