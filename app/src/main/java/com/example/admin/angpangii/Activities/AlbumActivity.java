@@ -40,8 +40,7 @@ public class AlbumActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         img1 = (ImageView ) findViewById(R.id.img1_1);
-        img2 = (ImageView ) findViewById(R.id.img1_2);
-        img3 = (ImageView ) findViewById(R.id.img1_3);
+
 
         /*url="http://10.0.3.2:8000/v1/getavatar/1";
         imageLoader = CustomVolleyRequest.getInstance(this.getApplicationContext()).getImageLoader();
@@ -56,8 +55,6 @@ public class AlbumActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Bitmap bitmap) {
                         img1.setImageBitmap(bitmap);
-                        img2.setImageBitmap(bitmap);
-                        img2.setImageBitmap(bitmap);
                     }
                 }, 0, 0, null,
                 new Response.ErrorListener() {

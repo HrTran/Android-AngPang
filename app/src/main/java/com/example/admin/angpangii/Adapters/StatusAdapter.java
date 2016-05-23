@@ -17,13 +17,13 @@ import java.util.List;
 /**
  * Created by Admin on 4/20/2016.
  */
-public class CustomStatusAdapter extends BaseAdapter {
+public class StatusAdapter extends BaseAdapter {
     private List<Status> listData;
     private LayoutInflater layoutInflater;
     private Context context;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
-    public CustomStatusAdapter(Context aContext, List<Status> listData) {
+    public StatusAdapter(Context aContext, List<Status> listData) {
         this.context = aContext;
         this.listData = listData;
         layoutInflater = LayoutInflater.from(aContext);

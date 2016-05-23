@@ -39,13 +39,13 @@ import com.example.admin.angpangii.R;
 /**
  * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
  */
-public class ImageGridFragment extends AbsListViewBaseFragment {
+public class SubAlbumFragment extends AbsListViewBaseFragment {
 
 	public static final int INDEX = 1;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fr_image_grid, container, false);
+		View rootView = inflater.inflate(R.layout.layout_subalbum, container, false);
 		listView = (GridView) rootView.findViewById(R.id.grid);
 		((GridView) listView).setAdapter(new ImageAdapter(getActivity()));
 		listView.setOnItemClickListener(new OnItemClickListener() {

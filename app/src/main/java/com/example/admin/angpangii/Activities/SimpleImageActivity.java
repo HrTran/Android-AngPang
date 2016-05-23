@@ -21,7 +21,7 @@ import android.support.v4.app.FragmentActivity;
 import com.example.admin.angpangii.R;
 import com.example.admin.angpangii.Constants;
 import com.example.admin.angpangii.fragment.ImageGalleryFragment;
-import com.example.admin.angpangii.fragment.ImageGridFragment;
+import com.example.admin.angpangii.fragment.SubAlbumFragment;
 import com.example.admin.angpangii.fragment.ImageListFragment;
 import com.example.admin.angpangii.fragment.ImagePagerFragment;
 
@@ -47,11 +47,11 @@ public class SimpleImageActivity extends FragmentActivity {
 				}
 				titleRes = R.string.ac_name_image_list;
 				break;
-			case ImageGridFragment.INDEX:
-				tag = ImageGridFragment.class.getSimpleName();
+			case SubAlbumFragment.INDEX:
+				tag = SubAlbumFragment.class.getSimpleName();
 				fr = getSupportFragmentManager().findFragmentByTag(tag);
 				if (fr == null) {
-					fr = new ImageGridFragment();
+					fr = new SubAlbumFragment();
 				}
 				titleRes = R.string.ac_name_image_grid;
 				break;

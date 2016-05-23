@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.example.admin.angpangii.Adapters.CustomStatusAdapter;
+import com.example.admin.angpangii.Adapters.StatusAdapter;
 import com.example.admin.angpangii.Adapters.Status;
 import com.example.admin.angpangii.R;
 
@@ -28,7 +28,7 @@ public class TabWallActivity extends Fragment {
         * */
         List<Status> image_details = getListData();
         final ListView listView = (ListView) view.findViewById(R.id.listW);
-        listView.setAdapter(new CustomStatusAdapter(getActivity(), image_details));
+        listView.setAdapter(new StatusAdapter(getActivity(), image_details));
         listView.setFastScrollEnabled(true);
         listView.setScrollingCacheEnabled(false);
 

@@ -17,6 +17,5 @@
 		android:layout_height="wrap_content"
 		android:indeterminate="false"
 		android:max="100"
-		android:layout_gravity="bottom"
-		style="@style/ProgressBarStyle" />
+		android:layout_gravity="bottom" />
 </FrameLayout>

@@ -22,7 +22,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import com.example.admin.angpangii.R;
-import com.example.admin.angpangii.fragment.ImageGridFragment;
+import com.example.admin.angpangii.fragment.SubAlbumFragment;
 import com.example.admin.angpangii.fragment.ImageListFragment;
 
 /**
@@ -59,7 +59,7 @@ public class ComplexImageActivity extends FragmentActivity {
 		ImagePagerAdapter(FragmentManager fm) {
 			super(fm);
 			listFragment = new ImageListFragment();
-			gridFragment = new ImageGridFragment();
+			gridFragment = new SubAlbumFragment();
 		}
 
 		@Override
