@@ -96,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
                             else if (drawerItem.getIdentifier() == 3) { intent = new Intent(MainActivity.this, AlbumActivity.class); }
                             else if (drawerItem.getIdentifier() == 4) {intent = new Intent(MainActivity.this, MenuActivity.class);}
                             else if (drawerItem.getIdentifier() == 8) {intent = new Intent(MainActivity.this, SettingActivity.class);}
+                            else if (drawerItem.getIdentifier() == 9) {intent = new Intent(MainActivity.this, LogoutActivity.class);}
                             if (intent != null){ MainActivity.this.startActivity(intent);}
                         }
                         //we do not consume the event and want the Drawer to continue with the event chain
