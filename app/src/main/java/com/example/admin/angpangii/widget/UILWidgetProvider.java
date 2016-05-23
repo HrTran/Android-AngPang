@@ -26,10 +26,10 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.ImageSize;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
-import com.nostra13.universalimageloader.sample.R;
-import com.nostra13.universalimageloader.sample.UILApplication;
+import com.example.admin.angpangii.R;
+import com.example.admin.angpangii.UILApplication;
 
-import static com.nostra13.universalimageloader.sample.Constants.IMAGES;
+import static com.example.admin.angpangii.Constants.IMAGES;
 
 /**
  * Example widget provider

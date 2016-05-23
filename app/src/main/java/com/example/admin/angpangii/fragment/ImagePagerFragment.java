@@ -34,8 +34,8 @@ import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
-import com.nostra13.universalimageloader.sample.Constants;
-import com.nostra13.universalimageloader.sample.R;
+import com.example.admin.angpangii.Constants;
+import com.example.admin.angpangii.R;
 
 /**
  * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)

@@ -21,9 +21,9 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import com.nostra13.universalimageloader.sample.R;
-import com.nostra13.universalimageloader.sample.fragment.ImageGridFragment;
-import com.nostra13.universalimageloader.sample.fragment.ImageListFragment;
+import com.example.admin.angpangii.R;
+import com.example.admin.angpangii.fragment.ImageGridFragment;
+import com.example.admin.angpangii.fragment.ImageListFragment;
 
 /**
  * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)

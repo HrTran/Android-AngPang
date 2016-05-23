@@ -22,7 +22,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.sample.R;
+import com.example.admin.angpangii.R;
 
 /**
  * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)

@@ -22,9 +22,9 @@ import android.widget.AbsListView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.PauseOnScrollListener;
-import com.nostra13.universalimageloader.sample.Constants;
-import com.nostra13.universalimageloader.sample.R;
-import com.nostra13.universalimageloader.sample.activity.SimpleImageActivity;
+import com.example.admin.angpangii.Constants;
+import com.example.admin.angpangii.R;
+import com.example.admin.angpangii.Activities.SimpleImageActivity;
 
 /**
  * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)

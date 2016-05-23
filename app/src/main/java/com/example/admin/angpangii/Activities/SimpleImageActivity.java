@@ -18,12 +18,12 @@ package com.example.admin.angpangii.Activities;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import com.nostra13.universalimageloader.sample.Constants;
-import com.nostra13.universalimageloader.sample.R;
-import com.nostra13.universalimageloader.sample.fragment.ImageGalleryFragment;
-import com.nostra13.universalimageloader.sample.fragment.ImageGridFragment;
-import com.nostra13.universalimageloader.sample.fragment.ImageListFragment;
-import com.nostra13.universalimageloader.sample.fragment.ImagePagerFragment;
+import com.example.admin.angpangii.R;
+import com.example.admin.angpangii.Constants;
+import com.example.admin.angpangii.fragment.ImageGalleryFragment;
+import com.example.admin.angpangii.fragment.ImageGridFragment;
+import com.example.admin.angpangii.fragment.ImageListFragment;
+import com.example.admin.angpangii.fragment.ImagePagerFragment;
 
 /**
  * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
