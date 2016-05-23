@@ -2,11 +2,8 @@ package com.example.admin.angpangii.Items;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
 import com.example.admin.angpangii.R;
 
 import org.json.JSONObject;
@@ -15,6 +12,8 @@ import org.json.JSONObject;
  * Created by li on 5/20/2016.
  */
 public class User {
+    public static final int PARENT = 1;
+    public static final int TEACHER = 2;
     private String basicAuth;
     private int id;
     private int type;
