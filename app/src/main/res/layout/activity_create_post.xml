@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:weightSum="8"
     android:orientation="vertical"
-    tools:context="com.example.admin.angpangii.Fragments.CreatePost">
+    tools:context="com.example.admin.angpangii.Activities.CreatePost">
 
     <!--<include layout="@layout/content_main" />-->
 
