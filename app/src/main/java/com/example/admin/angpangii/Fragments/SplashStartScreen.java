@@ -39,7 +39,8 @@ public class SplashStartScreen extends AppCompatActivity{
                 );
                 if(preferences.getInt("id", -1) == -1 ){
                     // if id = -1, go to login screen
-                     intent = new Intent(SplashStartScreen.this,Login2Activity.class);
+                    intent = new Intent(SplashStartScreen.this,Login2Activity.class);
+                    //intent = new Intent(SplashStartScreen.this,MainActivity.class);
                 }else {
                     // else load saved data and go to main screen
                     loadSavedData(preferences);

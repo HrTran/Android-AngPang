@@ -15,14 +15,14 @@
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
             android:src="@drawable/f1"
-            android:id="@+id/imageView" />
+            android:id="@+id/img_childAva" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nguyễn Công Phượng"
             android:textStyle="bold"
-            android:id="@+id/textView4"
+            android:id="@+id/txt_childName"
             android:layout_marginLeft="10dp"
             android:layout_gravity="center_vertical" />
     </LinearLayout>
@@ -84,7 +84,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Behave"
+                android:text="Food"
                 android:textStyle="bold"
                 android:id="@+id/textB"
                 android:layout_marginLeft="15dp"
@@ -220,8 +220,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Obey"
-                    android:id="@+id/comB"
+                    android:text="Lunch"
+                    android:id="@+id/comF"
                     android:layout_marginLeft="30dp"
                     android:layout_marginStart="30dp"/>
 

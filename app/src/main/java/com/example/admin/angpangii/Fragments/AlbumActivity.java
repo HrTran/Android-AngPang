@@ -2,6 +2,7 @@ package com.example.admin.angpangii.Fragments;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -11,6 +12,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.util.LruCache;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,16 +20,22 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.NetworkImageView;
 import com.example.admin.angpangii.Items.Health;
 import com.example.admin.angpangii.Items.HealthAdapter;
+import com.example.admin.angpangii.Items.User;
 import com.example.admin.angpangii.R;
 import com.example.admin.angpangii.utils.AppController;
+import com.example.admin.angpangii.utils.ConnectionInfo;
 import com.example.admin.angpangii.utils.CustomVolleyRequest;
 import com.example.admin.angpangii.utils.ImageLoadTask;
 import com.mikepenz.crossfadedrawerlayout.view.CrossfadeDrawerLayout;
@@ -58,16 +66,19 @@ import org.json.JSONObject;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Admin on 4/26/2016.
  */
 public class AlbumActivity extends AppCompatActivity {
-
-    private String url ;
-    private NetworkImageView img1,img2,img3;
+    private static final String TAG = AlbumActivity.class.getSimpleName();
+    //private String url ;
+    private ImageView img1,img2,img3;
     private ImageLoader imageLoader;
+    RequestQueue queue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,15 +88,44 @@ public class AlbumActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Album");
         //set the back arrow in the toolbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        img1 = (NetworkImageView ) findViewById(R.id.img1_1);
-        img2 = (NetworkImageView ) findViewById(R.id.img1_2);
-        img3 = (NetworkImageView ) findViewById(R.id.img1_3);
 
-        url="http://10.0.3.2:8000/v1/getavatar/1";
+        img1 = (ImageView ) findViewById(R.id.img1_1);
+        img2 = (ImageView ) findViewById(R.id.img1_2);
+        img3 = (ImageView ) findViewById(R.id.img1_3);
+
+        /*url="http://10.0.3.2:8000/v1/getavatar/1";
         imageLoader = CustomVolleyRequest.getInstance(this.getApplicationContext()).getImageLoader();
-        imageLoader.get(url, ImageLoader.getImageListener(img1,R.drawable.anh1, android.R.drawable
-                        .ic_dialog_alert));
-        img1.setImageUrl(url, imageLoader);
+
+        imageLoader.get(url, ImageLoader.getImageListener(img1, R.drawable.anh1, android.R.drawable.ic_dialog_alert));
+        img2.setImageUrl(url, imageLoader);*/
+
+        // Load Image from server
+        String url = "http://10.0.3.2:8000/v1/getavatar/1";
+        ImageRequest request = new ImageRequest(url,
+                new Response.Listener<Bitmap>() {
+                    @Override
+                    public void onResponse(Bitmap bitmap) {
+                        img1.setImageBitmap(bitmap);
+                        img2.setImageBitmap(bitmap);
+                        img2.setImageBitmap(bitmap);
+                    }
+                }, 0, 0, null,
+                new Response.ErrorListener() {
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("test image:", error.toString());
+                    }
+                }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> headers = new HashMap< String, String >();
+                headers.put("Authorization", User.getUser().getBasicAuth());
+                headers.put("Content-Type","application/x-www-form-urlencoded");
+                return headers;
+            }
+        };
+        AppController.getInstance().addToRequestQueue(request);
+        //queue.add(request);
+
     }
 
     @Override

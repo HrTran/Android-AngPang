@@ -1,10 +1,13 @@
 package com.example.admin.angpangii.Fragments;
 
 import android.app.ProgressDialog;
-import android.os.AsyncTask;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.util.LruCache;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,66 +19,113 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.NetworkImageView;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.admin.angpangii.Items.Health;
 import com.example.admin.angpangii.Items.User;
 import com.example.admin.angpangii.R;
 import com.example.admin.angpangii.utils.AppController;
+import com.example.admin.angpangii.utils.CustomVolleyRequest;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Admin on 4/26/2016.
+ * Created by Admin on 5/20/2016.
  */
-public class ContactActivity extends AppCompatActivity {
+public class SubHealthActivity extends HealthActivity {
 
-    private static final String TAG = ContactActivity.class.getSimpleName();
+    private static final String TAG = SubHealthActivity.class.getSimpleName();
     private String url;
+    private String AvaUrl = "http://10.0.3.2:8000/v1/get/child_picture/3";
     private ProgressDialog pDialog;
     // temporary string to show the parsed response
-    private String jsonResponse;
-    private ImageView background;
-    private TextView userName;
-    private TextView userEmail;
-    private TextView userBirthday;
-    private TextView userGender;
-    private TextView userAddress;
-    private TextView userPhone;
-
+    private String jsonResponse, jsonImage;
+    private ImageView childAva;
+    private TextView mood;
+    private TextView health;
+    private TextView temp;
+    private TextView sleep;
+    private TextView food;
+    private TextView childName;
+    private int childID;
+    //private ImageLoader imageLoader;
+    ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
-        getSupportActionBar().setTitle("Profile");
+        setContentView(R.layout.layout_subhealth);
+        getSupportActionBar().setTitle("Back to Notice");
         //set the back arrow in the toolbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //get child id from health activity
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            childID = extras.getInt("Pass_childId");
+        }
+        childAva = (ImageView) findViewById(R.id.img_childAva);
+        childName = (TextView) findViewById(R.id.txt_childName);
+        mood = (TextView) findViewById(R.id.comM);
+        health = (TextView) findViewById(R.id.comH);
+        temp = (TextView) findViewById(R.id.comT);
+        sleep = (TextView) findViewById(R.id.comS);
+        food = (TextView) findViewById(R.id.comF);
 
-        background = (ImageView) findViewById(R.id.imgBackground);
-        background.setImageResource(R.drawable.ava_background);
+        /*jsonImage = "http://10.0.3.2:8000/v1/get/child_picture/3";
+        imageLoader = CustomVolleyRequest.getInstance(this.getApplicationContext()).getImageLoader();
+        imageLoader.get(jsonImage,
+                ImageLoader.getImageListener(childAva, R.drawable.f5, android.R.drawable.ic_dialog_alert));
 
-        userName = (TextView) findViewById(R.id.username1);
-        userEmail = (TextView) findViewById(R.id.email1);
-        userBirthday = (TextView) findViewById(R.id.birthday1);
-        userGender = (TextView) findViewById(R.id.gender1);
-        userAddress = (TextView) findViewById(R.id.address1);
-        userPhone = (TextView) findViewById(R.id.phone1);
+        childAva.setImageUrl(jsonImage, imageLoader);*/
+        // Retrieves an image specified by the URL, displays it in the UI.
 
-        url  = "http://10.0.3.2:8000/v1/get/user_info/1";
+
+
+        url = "http://10.0.3.2:8000/v1/get/child_info/" + childID;
         pDialog = new ProgressDialog(this);
         pDialog.setMessage("Please wait...");
         pDialog.setCancelable(false);
 
+        ChildAvaRequest();
         makeJsonObjectRequest();
     }
+
+    /**
+     * Method to load ava of children
+     */
+    public void ChildAvaRequest() {
+        String url = "http://10.0.3.2:8000/v1/get/child_picture/3";
+        ImageRequest request = new ImageRequest(url,
+                new Response.Listener<Bitmap>() {
+                    @Override
+                    public void onResponse(Bitmap bitmap) {
+                        childAva.setImageBitmap(bitmap);
+                    }
+                }, 0, 0, null,
+                new Response.ErrorListener() {
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("test image:", error.toString());
+                    }
+                }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> headers = new HashMap< String, String >();
+                headers.put("Authorization", User.getUser().getBasicAuth());
+                headers.put("Content-Type","application/x-www-form-urlencoded");
+                return headers;
+            }
+        };
+        AppController.getInstance().addToRequestQueue(request);
+
+    }
+
 
     /**
      * Method to make json object request where json response starts wtih {
@@ -98,25 +148,28 @@ public class ContactActivity extends AppCompatActivity {
                     String fname = response.getString("fname");
                     String mname = response.getString("mname");
                     String lname = response.getString("lname");
-                    String email = response.getString("email");
                     String birthday = response.getString("birthday");
                     String gender = response.getString("sex");
                     String address = response.getString("address");
-                    String phone = response.getString("phone");
-                    String type = response.getString("type");
+                    String child_mood = response.getString("mood");
+                    String child_health = response.getString("health");
+                    String child_temp = response.getString("temperature");
+                    String child_sleep = response.getString("sleep");
+                    String child_food = response.getString("food");
+                    String child_idClass = response.getString("id_class");
 
                     jsonResponse = "";
                     if (mname.equals("")){
                         jsonResponse += fname + " " + lname + "\0";
                     } else jsonResponse += fname + " " + mname + " " + lname + "\0";
 
-                    userName.setText(jsonResponse);
-                    userEmail.setText(email);
-                    userBirthday.setText(birthday);
-                    if (gender.equals("true")){userGender.setText("Nam"); }
-                    else userGender.setText("Nữ");
-                    userAddress.setText(address);
-                    userPhone.setText(phone);
+
+                    childName.setText(jsonResponse);
+                    mood.setText(child_mood);
+                    health.setText(child_health);
+                    temp.setText(child_temp);
+                    sleep.setText(child_sleep);
+                    food.setText(child_food);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -150,17 +203,11 @@ public class ContactActivity extends AppCompatActivity {
         AppController.getInstance().addToRequestQueue(jsonObjReq);
     }
 
-    /**
-     * Method to show Progress Dialog
-     * */
     private void showpDialog() {
         if (!pDialog.isShowing())
             pDialog.show();
     }
 
-    /**
-     * Method to hide Progress Dialog
-     * */
     private void hidepDialog() {
         if (pDialog.isShowing())
             pDialog.dismiss();
@@ -170,7 +217,7 @@ public class ContactActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                this.finish();
+                onBackPressed();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

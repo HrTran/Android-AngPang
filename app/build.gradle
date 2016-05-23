@@ -28,7 +28,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.2.0'
     compile 'com.android.support:design:23.2.0'
     compile('com.mikepenz:materialdrawer:5.1.6@aar'){ transitive = true }
-    compile project(':volley')
+//    compile project(':volley')
     // used to provide the MiniDrawer to normal Drawer crossfade effect via a SlidingPane layout
     // --> https://github.com/mikepenz/MaterialDrawer/blob/develop/app/src/main/java/com/mikepenz/materialdrawer/app/MiniDrawerActivity.java
     // https://github.com/mikepenz/Crossfader
@@ -47,6 +47,6 @@ dependencies {
     // https://github.com/mikepenz/Android-Iconics
     compile 'com.mikepenz:google-material-typeface:2.2.0.1@aar'
     compile 'com.mikepenz:fontawesome-typeface:4.4.0.1@aar'
-
+    compile 'com.mcxiaoke.volley:library:1.0.19'
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
 }

@@ -48,7 +48,9 @@ public class TabNoticeActivity extends Fragment{
     }
 
 
-
+    /**
+     * Method to make data for listview
+     */
     private List<NoticeItems> getListData() {
         List<NoticeItems> list = new ArrayList<NoticeItems>();
         NoticeItems not1 = new NoticeItems("Cô giáo Thảo", "f5", " đã đăng một trạng thái mới ", "\"Hôm nay có buổi dã ngoại\"", "anh1");

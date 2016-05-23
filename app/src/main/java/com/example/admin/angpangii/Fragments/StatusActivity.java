@@ -10,13 +10,15 @@ import com.example.admin.angpangii.R;
  * Created by Admin on 5/4/2016.
  */
 public class StatusActivity extends AppCompatActivity {
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_status);
-        getSupportActionBar().setTitle("Trở về trang chủ");
+        getSupportActionBar().setTitle("Back to Home");
         //set the back arrow in the toolbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(false);
+
     }
 
     @Override

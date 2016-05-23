@@ -46,7 +46,7 @@ public class MenuAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         if (convertView == null) {
-            convertView = layoutInflater.inflate(R.layout.activity_menu, null);
+            convertView = layoutInflater.inflate(R.layout.layout_menu, null);
             holder = new ViewHolder();
             holder.userImageView = (ImageView) convertView.findViewById(R.id.img_user_menu);
             holder.userPostView = (TextView) convertView.findViewById(R.id.lbl_user_menu);
@@ -56,9 +56,18 @@ public class MenuAdapter extends BaseAdapter {
         }
 
         MenuList menuList = this.listData.get(position);
-        holder.userImageView.setImageResource(R.drawable.ava_null);
+        int userImage = getDrawableResIdByName(menuList.getUserMenu());
+        holder.userImageView.setImageResource(userImage);
         holder.userPostView.setText(menuList.getUserPost());
         return convertView;
+    }
+
+    // Tìm ID của Image ứng với tên của ảnh (Trong thư mục drawable).
+    public int getDrawableResIdByName(String resName)  {
+        String pkgName = context.getPackageName();
+        // Trả về 0 nếu không tìm thấy.
+        int resID = context.getResources().getIdentifier(resName , "drawable", pkgName);
+        return resID;
     }
 
     public static class ViewHolder {

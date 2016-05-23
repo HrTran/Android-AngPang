@@ -57,30 +57,26 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //set the back arrow in the toolbar
-        /*getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
-        getSupportActionBar().setTitle("Trang chủ");
+        getSupportActionBar().setTitle("Home");
 
         // Create a few sample profile
         // NOTE you have to define the loader logic too. See the CustomApplication for more detail
-        final IProfile prof_huy = new ProfileDrawerItem().withName("Trần Tất Huy").withEmail("huyict58@gmail.com").withIcon(ResourcesCompat.getDrawable(getResources(), R.drawable.huy_profile, null)).withIdentifier(100);
+        final IProfile prof_huy = new ProfileDrawerItem().withName("Devushka Krasivaya").withEmail("devushkaK158@gmail.com").withIcon(ResourcesCompat.getDrawable(getResources(), R.drawable.f5, null)).withIdentifier(100);
 
         // Create the AccountHeader
         headerResult = new AccountHeaderBuilder().withActivity(this).withSelectionListEnabledForSingleProfile(false).withCompactStyle(true).withTranslucentStatusBar(true)
                 .withHeaderBackground(R.drawable.header).addProfiles(prof_huy).withSavedInstance(savedInstanceState).build();
 
-        //List item in Menu Sidebar
-        PrimaryDrawerItem item_bus = new PrimaryDrawerItem().withName(R.string.drawer_item_bus).withIcon(GoogleMaterial.Icon.gmd_my_location).withIdentifier(5).withSelectable(false);
-        PrimaryDrawerItem item_cctv = new PrimaryDrawerItem().withName("CCTV").withIcon(GoogleMaterial.Icon.gmd_my_location).withIdentifier(6).withSelectable(false);
-        SecondaryDrawerItem item_logout = new SecondaryDrawerItem().withName("Log out").withIcon(GoogleMaterial.Icon.gmd_labels).withIdentifier(9).withSelectable(false);
+
 
         //Create the drawer
         result = new DrawerBuilder().withActivity(this).withToolbar(toolbar).withHasStableIds(true).withDrawerLayout(R.layout.layout_crossfade_navigation_drawer).withDrawerWidthDp(72).withGenerateMiniDrawer(true).withAccountHeader(headerResult) //set the AccountHeader we created earlier for the header
                 .addDrawerItems(
                         new PrimaryDrawerItem().withName("Home").withIcon(FontAwesome.Icon.faw_home).withIdentifier(1).withSelectable(false),
-                        new SectionDrawerItem().withName("Danh mục chức năng"),
-                        new PrimaryDrawerItem().withName("Notice").withIcon(GoogleMaterial.Icon.gmd_disc_full).withIdentifier(2).withSelectable(false).withBadgeStyle(new BadgeStyle().withTextColor(Color.WHITE).withColorRes(R.color.md_red_700)),
-                        new PrimaryDrawerItem().withName(R.string.drawer_item_album).withIcon(FontAwesome.Icon.faw_eye).withIdentifier(3).withSelectable(false),
-                        new PrimaryDrawerItem().withName("Daily Menu").withIcon(GoogleMaterial.Icon.gmd_filter_list).withIdentifier(4).withSelectable(false)
+                        new SectionDrawerItem().withName("Functions"),
+                        new PrimaryDrawerItem().withName("Notice").withIcon(FontAwesome.Icon.faw_heartbeat).withIdentifier(2).withSelectable(false).withBadgeStyle(new BadgeStyle().withTextColor(Color.WHITE).withColorRes(R.color.md_red_700)),
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_album).withIcon(FontAwesome.Icon.faw_picture_o).withIdentifier(3).withSelectable(false),
+                        new PrimaryDrawerItem().withName("Daily Menu").withIcon(FontAwesome.Icon.faw_cutlery).withIdentifier(4).withSelectable(false)
 
                 ) // add the items we want to use with our Drawer
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
@@ -101,8 +97,6 @@ public class MainActivity extends AppCompatActivity {
                             else if (drawerItem.getIdentifier() == 2) { intent = new Intent(MainActivity.this, HealthActivity.class); }
                             else if (drawerItem.getIdentifier() == 3) { intent = new Intent(MainActivity.this, AlbumActivity.class); }
                             else if (drawerItem.getIdentifier() == 4) {intent = new Intent(MainActivity.this, MenuActivity.class);}
-                            else if (drawerItem.getIdentifier() == 5) {intent = new Intent(MainActivity.this, BusActivity.class);}
-                            else if (drawerItem.getIdentifier() == 6) {intent = new Intent(MainActivity.this, CCTVActivity.class);}
                             else if (drawerItem.getIdentifier() == 8) {intent = new Intent(MainActivity.this, SettingActivity.class);}
                             if (intent != null){ MainActivity.this.startActivity(intent);}
                         }
@@ -113,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                 .addStickyDrawerItems(
                         new SectionDrawerItem().withName("Help and Setting"),
                         new SecondaryDrawerItem().withName("Setting").withIcon(GoogleMaterial.Icon.gmd_brightness_5).withIdentifier(8).withSelectable(false),
-                        item_logout
+                        new SecondaryDrawerItem().withName("Log out").withIcon(FontAwesome.Icon.faw_sign_out).withIdentifier(9).withSelectable(false)
                 )
                 .withSavedInstance(savedInstanceState)
                 .withShowDrawerOnFirstLaunch(true)
@@ -157,8 +151,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         // Number of unseen notices appear next to Notice section on Menu Sidebar
-        result.updateBadge(2, new StringHolder(5 + ""));
+        //result.updateBadge(2, new StringHolder(5 + ""));
 
+        // create 2 tab: wall and notify
         final TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.bull_fade));
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.not_fade));

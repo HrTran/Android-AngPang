@@ -48,26 +48,8 @@
         </activity>
 
         <!-- Bus activity -->
-        <activity
-            android:name=".Fragments.BusActivity"
-            android:parentActivityName=".Fragments.MainActivity">
-
-            <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.admin.angpangii.Fragments.MainActivity" />
-        </activity>
 
         <!-- CCTV activity -->
-        <activity
-            android:name=".Fragments.CCTVActivity"
-            android:parentActivityName=".Fragments.MainActivity">
-
-            <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.admin.angpangii.Fragments.MainActivity" />
-        </activity>
 
         <!-- Contact activity -->
         <activity
@@ -95,10 +77,8 @@
         </activity>
 
         <!-- Message activity -->
-        <activity android:name=".Fragments.MessageActivity" />
 
         <!-- Notice activity -->
-        <activity android:name=".Fragments.NoticeActivity" />
 
         <!-- Setting activity -->
         <activity
@@ -132,6 +112,18 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.admin.angpangii.Fragments.MainActivity" />
         </activity>
+
+        <!-- Health activity -->
+        <activity
+            android:name=".Fragments.SubHealthActivity"
+            android:parentActivityName=".Fragments.HealthActivity">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.admin.angpangii.Fragments.HealthActivity" />
+        </activity>
+
         <!--
             ATTENTION: This was auto-generated to add Google Play services to your project for
             App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.

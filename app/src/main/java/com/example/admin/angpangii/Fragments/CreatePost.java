@@ -19,6 +19,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.admin.angpangii.Items.User;
 import com.example.admin.angpangii.R;
 import com.example.admin.angpangii.utils.ConnectionInfo;
 
@@ -121,7 +122,7 @@ public class CreatePost extends Activity {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String,String> headers = new HashMap < String, String > ();
-                headers.put("Authorization", ConnectionInfo.getInstance().getAuth());
+                headers.put("Authorization", User.getUser().getBasicAuth());
                 headers.put("Content-Type","application/x-www-form-urlencoded");
                 return headers;
             }

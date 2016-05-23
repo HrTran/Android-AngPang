@@ -1,8 +1,10 @@
 package com.example.admin.angpangii.Fragments;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
@@ -13,12 +15,15 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.example.admin.angpangii.Items.Health;
 import com.example.admin.angpangii.Items.HealthAdapter;
+import com.example.admin.angpangii.Items.Status;
+import com.example.admin.angpangii.Items.User;
 import com.example.admin.angpangii.R;
 import com.example.admin.angpangii.utils.AppController;
 
@@ -28,7 +33,9 @@ import org.json.JSONObject;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Admin on 5/7/2016.
@@ -38,12 +45,13 @@ public class HealthActivity extends AppCompatActivity implements AdapterView.OnI
     // Log tag
     private static final String TAG = HealthActivity.class.getSimpleName();
     private String url;
-    private static final String[]paths = {"Class","Class A1", "Class A2", "Class A3"};
+    private static final String[]paths = {"Choose class","Class 1", "Class 2", "Class 3","Class 4","Class 5"};
     //private static String urlString;
     private List<Health> childList = new ArrayList<Health>();
     private HealthAdapter HAdapter;
     private ListView listChild;
     private ProgressDialog pDialog;
+    private int childId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -68,11 +76,34 @@ public class HealthActivity extends AppCompatActivity implements AdapterView.OnI
         listChild.setScrollingCacheEnabled(false);
         HAdapter = new HealthAdapter(this, childList);
         listChild.setAdapter(HAdapter);
+        listChild.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+                Object o = listChild.getItemAtPosition(position);
+                childId = ((Health) o).getChildId();
+                Log.i("Health Activity - ", "Child id to pass: " + childId);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                /* Create an Intent that will start the Status-Activity. */
+                        Intent mainIntent = new Intent(HealthActivity.this, SubHealthActivity.class);
+                        mainIntent.putExtra("Pass_childId",childId);
+                        startActivity(mainIntent);
+                    }
+                }, 0);
+
+            }
+        });
 
         // Calling async task to get json
         //new ProcessJSON().execute();
     }
 
+    /**
+     * Method to handle action with each item on spinner
+     * @param position is position of item on spinner
+     * */
     public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
 
         //List<Health> healths = getListData();
@@ -117,11 +148,37 @@ public class HealthActivity extends AppCompatActivity implements AdapterView.OnI
                 // Refresh your listview..
                 HAdapter.notifyDataSetChanged();
                 break;
+            case 4:
+                // Whatever you want to happen when the thrid item gets selected
+                listChild.setVisibility(View.VISIBLE);
+                // Clear collection..
+                childList.clear();
+                // Add data to collection..
+                url  = "http://10.0.3.2:8000/v1/get/class_list/4";
+                new ProcessJSON().execute(url);
+                // Refresh your listview..
+                HAdapter.notifyDataSetChanged();
+                break;
+            case 5:
+                // Whatever you want to happen when the thrid item gets selected
+                listChild.setVisibility(View.VISIBLE);
+                // Clear collection..
+                childList.clear();
+                // Add data to collection..
+                url  = "http://10.0.3.2:8000/v1/get/class_list/5";
+                new ProcessJSON().execute(url);
+                // Refresh your listview..
+                HAdapter.notifyDataSetChanged();
+                break;
         }
 
 
     }
 
+    /**
+     * Method to handle action if not choose anyitem on spinner
+     *
+     * */
     public void onNothingSelected(AdapterView<?> parent) {
         // Another interface callback
         final ListView listChild = (ListView) findViewById(R.id.listH);
@@ -145,12 +202,20 @@ public class HealthActivity extends AppCompatActivity implements AdapterView.OnI
         hidePDialog();
     }
 
+    /**
+     * Method to hide Progress Dialog
+     * */
     private void hidePDialog() {
         if (pDialog != null) {
             pDialog.dismiss();
             pDialog = null;
         }
     }
+
+    /**
+     * Method to read JSON array
+     *
+     * */
     private class ProcessJSON extends AsyncTask<String, Void, Void> {
 
         @Override
@@ -200,70 +265,18 @@ public class HealthActivity extends AppCompatActivity implements AdapterView.OnI
                     VolleyLog.d(TAG, "Error: " + error.getMessage());
                     hidePDialog();
                 }
-            });
+            }){
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Map<String,String> headers = new HashMap< String, String >();
+                    headers.put("Authorization", User.getUser().getBasicAuth());
+                    headers.put("Content-Type","application/x-www-form-urlencoded");
+                    return headers;
+                }
+            };
 
             AppController.getInstance().addToRequestQueue(childReq);
-
-            /*String stream = null;
-            String urlString = strings[0];
-
-            HTTPDataHandler hh = new HTTPDataHandler();
-            stream = hh.GetHTTPData(urlString);
-
-            // Return the data from specified url
-            *//**//*
-                Important in JSON DATA
-                -------------------------
-                * Square bracket ([) represents a JSON array
-                * Curly bracket ({) represents a JSON object
-                * JSON object contains key/value pairs
-                * Each key is a String and value may be different data types
-             *//**//*
-
-            //..........Process JSON DATA................
-            if(stream !=null){
-                try{
-                    // looping through All
-                    for (int i = 0; i < childName.length(); i++) {
-                        JSONObject c = childName.getJSONObject(i);
-                        String id = c.getString("id");
-                        String fname = c.getString("fname");
-                        String lname = c.getString("lname");
-
-                        // tmp hashmap for single contact
-                        HashMap<String, String> childFullName = new HashMap<String, String>();
-
-                        // adding each child node to HashMap key => value
-                        childFullName.put("id", id);
-                        childFullName.put("lname", lname);
-                        childFullName.put("fname", fname);
-
-                        // adding contact to contact list
-                        childList.add(childFullName);
-                    }
-                }catch(JSONException e){
-                    e.printStackTrace();
-                }
-
-            } // if statement end*/
             return null;
         }
-
-        /*@Override
-        protected void onPostExecute(Void result){
-            super.onPostExecute(result);
-            // Dismiss the progress dialog
-            if (pDialog.isShowing())
-                pDialog.dismiss();
-            *//**//**
-             * Updating parsed JSON data into ListView
-             * *//**//*
-            ListAdapter adapter = new SimpleAdapter(
-                    HealthActivity.this, childList,
-                    R.layout.layout_health, new String[] {"fname", "lname"}, new int[] { R.id.childFName,
-                    R.id.childLName });
-
-            listChild.setAdapter(adapter);
-        } // onPostExecute() end*/
-    } // ProcessJSON class end*/
+    }
 }

@@ -2,30 +2,28 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+    <!-- Picture at body -->
     <ImageView
-        android:layout_width="300dp"
-        android:layout_height="140dp"
+        android:layout_width="fill_parent"
+        android:layout_height="240dp"
         android:id="@+id/statusImageId"
-        android:src="@drawable/ls_null"
-        android:layout_marginLeft="7dp"
+        android:src="@drawable/hinhanh1"
         android:layout_below="@+id/statusText"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-
+    <!-- user name -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Cô giáo"
-        android:layout_marginLeft="5dp"
         android:textStyle="bold"
         android:textColor="#0254D9"
         android:id="@+id/userName"
         android:layout_alignParentTop="true"
         android:layout_alignLeft="@+id/statusDate"
         android:layout_alignStart="@+id/statusDate" />
-
+    <!-- user's status -->
     <TextView
         android:layout_width="300dp"
         android:layout_height="40dp"
@@ -37,18 +35,19 @@
         android:layout_below="@+id/statusDate"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-
+    <!-- Time -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Hà Nội, 01/01/2016 00:00 p.m"
-        android:textColor="#000000"
+        android:textColor="#181737"
+        android:layout_marginLeft="5dp"
         android:id="@+id/statusDate"
         android:layout_below="@+id/userName"
         android:layout_toRightOf="@+id/imageAvatar"
         android:layout_toEndOf="@+id/imageAvatar" />
-
+    <!-- User's ava -->
     <ImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -58,14 +57,71 @@
         android:layout_alignParentTop="true"
         android:layout_above="@+id/statusText" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="3 Bình luận"
-        android:textColor="#000000"
-        android:id="@+id/comments"
         android:layout_below="@+id/statusImageId"
-        android:layout_alignLeft="@+id/statusImageId"
-        android:layout_alignStart="@+id/statusImageId" />
+        android:layout_marginTop="5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="7dp"
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_like_2"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical"
+                android:text="12"
+                android:textColor="#7A7E80"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:layout_marginRight="7dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="3 Bình luận"
+            android:gravity="end"
+            android:textColor="#7A7E80"
+            android:id="@+id/comments"
+             />
+    </LinearLayout>
+    <View android:id="@id/view1G" android:background="@color/main_color_gray" android:layout_width="fill_parent" android:layout_height="1.0dip"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignLeft="@+id/statusText"
+        android:layout_alignStart="@+id/statusText" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/view1G"
+        android:gravity="center_vertical"
+        android:layout_alignRight="@id/view1G"
+        android:layout_alignEnd="@id/view1G">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Like"
+            android:textColor="#7A7E80"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:id="@+id/cmt_stt"
+            android:gravity="center"
+            android:text="Comment"
+            android:textColor="#7A7E80"/>
+    </LinearLayout>
+
+
 </RelativeLayout>

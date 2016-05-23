@@ -6,36 +6,43 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
     <LinearLayout
-    android:orientation="vertical"
-    android:id="@id/main"
-    android:background="@drawable/bg"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-    <!-- Login progress -->
-    <ProgressBar
-        android:id="@+id/login_progress"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:visibility="gone"
-        android:layout_gravity="center_horizontal" />
+        android:orientation="vertical"
+        android:id="@id/main"
+        android:background="@drawable/bg"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <!-- Login progress -->
+
+
+
         <ScrollView android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0" android:id="@+id/login_form">
-            <LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:paddingLeft="@dimen/pad_15dp" android:paddingTop="@dimen/pad_20dp" android:paddingRight="@dimen/pad_15dp" android:layout_width="fill_parent" android:layout_height="fill_parent">
 
-                <ImageView android:id="@id/imageView1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/logo" />
+            <LinearLayout
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/pad_15dp"
+                android:paddingTop="@dimen/pad_20dp"
+                android:paddingRight="@dimen/pad_15dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom">
 
-                <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/pad_15dp">
-                    <Button android:id="@id/btnTw" android:background="@drawable/btn_tw" android:layout_width="wrap_content" android:layout_height="wrap_content" style="@style/btn" />
-                    <Button android:id="@+id/btnFb" android:background="@drawable/btn_fb" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/pad_10dp" style="@style/btn" />
-                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="result"
+                    android:textColor="#ffffff"
+                    android:id="@+id/resultTView"
+                    android:layout_centerHorizontal="true" />
+
                 <TextView android:textSize="@dimen/txt_16sp" android:textColor="@color/white" android:id="@id/textView1" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/pad_10dp" android:layout_marginBottom="@dimen/pad_5dp" android:text="@string/signin" />
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:textColorHint="#F2F0F0">
 
                     <AutoCompleteTextView
-                        android:id="@+id/email"
+                        android:id="@+id/emailText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/prompt_email"
@@ -46,10 +53,11 @@
                 </android.support.design.widget.TextInputLayout>
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:textColorHint="#F2F0F0">
 
                     <EditText
-                        android:id="@+id/password"
+                        android:id="@+id/passwordText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/prompt_password"
@@ -66,10 +74,10 @@
                 </EditText>
                 <EditText android:id="@id/password" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/pad_5dp" android:hint="@string/password" android:drawableRight="@drawable/ic_pwd" android:inputType="textPassword" style="@style/editext_normal" />-->
                 <LinearLayout android:gravity="bottom" android:id="@id/a" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/pad_10dp">
-                    <CheckBox android:textSize="@dimen/txt_14sp" android:textColor="@color/white" android:id="@id/checkBox1" android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="@string/keep_me_signin" android:layout_weight="1.0" />
-                    <Button android:id="@+id/email_sign_in_button" android:background="@drawable/btn_login" android:layout_width="wrap_content" android:layout_height="wrap_content" style="@style/btn" />
+                    <CheckBox android:textSize="@dimen/txt_14sp" android:textColor="@color/white" android:id="@id/rememberCheckBox" android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="@string/keep_me_signin" android:layout_weight="1.0" />
+                    <Button android:id="@+id/signInButton" android:background="@drawable/btn_login" android:layout_width="wrap_content" android:layout_height="wrap_content" style="@style/btn" />
                 </LinearLayout>
-                <Button android:textSize="@dimen/txt_14sp" android:textColor="@color/main_color_gray_dk" android:gravity="right" android:id="@id/btnForgot" android:background="@color/transparent" android:padding="@dimen/pad_5dp" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Forget password?" />
+                <Button android:textSize="@dimen/txt_14sp" android:textColor="#ffffff" android:gravity="right" android:id="@id/btnForgot" android:background="@color/transparent" android:padding="@dimen/pad_5dp" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="" />
             </LinearLayout>
         </ScrollView>
         <LinearLayout android:gravity="center" android:orientation="horizontal" android:background="@drawable/reg_bg" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true">
@@ -77,7 +85,7 @@
     </LinearLayout>
     <LinearLayout android:gravity="center" android:orientation="horizontal" android:id="@id/btnReg" android:background="@drawable/reg_bg" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true">
         <TextView android:textSize="@dimen/txt_14sp" android:textColor="@color/white" android:id="@id/textView2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="@dimen/pad_3dp" android:text="@string/no_account" />
-        <TextView android:textSize="@dimen/txt_14sp" android:textStyle="bold" android:textColor="@color/main_color_gray" android:id="@id/textView2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/register_now" />
+        <TextView android:textSize="@dimen/txt_14sp" android:textStyle="bold" android:textColor="@color/main_color_gray" android:id="@id/createAccoutTView" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/register_now" />
     </LinearLayout>
 
 </RelativeLayout>

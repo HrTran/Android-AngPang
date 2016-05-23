@@ -5,7 +5,7 @@
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password (optional)</string>
+    <string name="prompt_password">********</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">This email address is invalid</string>
@@ -25,7 +25,7 @@
     <string name="drawer_item_logout">Đăng xuất</string>
 
     <string name="textSearchHint">Tìm kiếm</string>
-    <string name="text_Enter_Hint">Enter yout comment&#8230;</string>
+    <string name="text_Enter_Hint">Enter your comment&#8230;</string>
 
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et 
 	dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea 
