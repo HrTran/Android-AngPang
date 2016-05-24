@@ -24,11 +24,14 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.admin.angpangii.Items.User;
 import com.example.admin.angpangii.R;
 import com.example.admin.angpangii.utils.ConnectionInfo;
+
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Calendar;
@@ -59,6 +62,7 @@ public class RegisterActivity extends Activity {
     private RequestQueue queue;
     private Context context;
     private int selectedGender = 0;
+    private String basicAuth;
     String sex;
     private static final int[] daysPerMonth =
             { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
@@ -236,11 +240,22 @@ public class RegisterActivity extends Activity {
                     @Override
                     public void onResponse(String response) {
                         // response
-                        Toast.makeText(context, response, Toast.LENGTH_LONG).show();
+                        String tokens[] = response.split(":");
+                        Toast.makeText(context, tokens[0], Toast.LENGTH_LONG).show();
                         Log.d("Response", response);
-                        if(response.equals("Account is created successfully")) {
+                        if(tokens[0].equals("Account is created successfully")) {
+                            User.getUser().setId(Integer.parseInt(tokens[1]));
+                            User.getUser().setType(1);
+                            String sEmail = email.getText().toString();
+                            String userCredential = sEmail + ":" + password.getText().toString();
+                            basicAuth = "Basic " + new String(
+                                    Base64.encodeToString(userCredential.getBytes(),
+                                            Base64.DEFAULT));
+                            User.getUser().setBasicAuth(basicAuth);
                             // goto enter student token
-
+                            Intent intent = new Intent(RegisterActivity.this, AddChildrenActivity.class);
+                            startActivity(intent);
+                            finish();
                         };
                     }
                 },
@@ -292,4 +307,38 @@ public class RegisterActivity extends Activity {
 
         return false;
     } // end method checkDay
+ /**
+    private void setupUser() {
+        String sEmail = email.getText().toString();
+        String userCredential = sEmail + ":" + password.getText().toString();
+        basicAuth = "Basic " + new String(
+                Base64.encodeToString(userCredential.getBytes(),
+                        Base64.DEFAULT));
+        // get user id
+        String url = ConnectionInfo.HOST + "/v1/get/user_detail/" + sEmail;
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET,
+                url,
+                (JSONObject) null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        User.getUser().initUser(basicAuth, response, context);
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> headers = new HashMap< String, String >();
+                headers.put("Authorization", basicAuth);
+                headers.put("Content-Type","application/x-www-form-urlencoded");
+                return headers;
+            }
+        };
+    }
+  */
 }

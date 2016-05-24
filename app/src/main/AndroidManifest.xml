@@ -141,6 +141,10 @@
         <activity
             android:name=".Activities.CreatePost"
             android:label="@string/title_activity_create_post"></activity>
+
+        <activity
+            android:name=".Fragments.AddChildrenActivity"
+            android:label="@string/title_activity_add_children"></activity>
     </application>
 
 </manifest>

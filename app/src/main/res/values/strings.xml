@@ -55,6 +55,7 @@
     <string name="title_activity_login2">Login2Activity</string>
     <string name="title_activity_create_post">CreatePost</string>
     <string name="preference_file_key">remember_user</string>
+    <string name="title_activity_add_children">AddChildrenActivity</string>
 
     <!-- Activity titles -->
     <string name="ac_name_image_list">Image List Example</string>
