@@ -1,6 +1,7 @@
 package com.example.admin.angpangii.Adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -8,7 +9,9 @@ import android.widget.TextView;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.volley.Network;
 import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
 import com.example.admin.angpangii.R;
 import com.example.admin.angpangii.utils.AppController;
 
@@ -49,8 +52,8 @@ public class StatusAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = layoutInflater.inflate(R.layout.layout_subwall, null);
             holder = new ViewHolder();
-            holder.statusImageView = (ImageView) convertView.findViewById(R.id.statusImageId);
-            holder.avatarImageView = (ImageView) convertView.findViewById(R.id.imageAvatar);
+            holder.statusImageView = (NetworkImageView) convertView.findViewById(R.id.statusImageId);
+            holder.avatarImageView = (NetworkImageView) convertView.findViewById(R.id.imageAvatar);
             holder.userNameView = (TextView) convertView.findViewById(R.id.userName);
             holder.statusDateView = (TextView) convertView.findViewById(R.id.statusDate);
             holder.statusTextView = (TextView) convertView.findViewById(R.id.statusText);
@@ -61,12 +64,24 @@ public class StatusAdapter extends BaseAdapter {
 
         Status status = this.listData.get(position);
         holder.userNameView.setText(status.getUsername());
-        holder.statusDateView.setText("Hanoi, " + status.getStatusTime());
+        holder.statusDateView.setText(status.getStatusTime());
         holder.statusTextView.setText(status.getStatusText());
-        int avaImage = getDrawableResIdByName(status.getAvatarImage());
-        int staImage = getDrawableResIdByName(status.getStatusImage());
-        holder.avatarImageView.setImageResource(avaImage);
-        holder.statusImageView.setImageResource(staImage);
+        Log.d("set image status", position + status.getStatusImage());
+        if(status.getStatusImage() == null){
+            holder.statusImageView.setVisibility(View.GONE);
+            Log.d("set view to gone", String.valueOf(position));
+        }else {
+            holder.statusImageView.setVisibility(View.VISIBLE);
+            holder.statusImageView.setImageUrl(status.getStatusImage(), imageLoader);
+        }
+
+        if(status.getAvatarImage() == null) {
+            holder.avatarImageView.setImageResource(R.drawable.default_profile);
+        }else {
+            holder.avatarImageView.setImageUrl(status.getAvatarImage(), imageLoader);
+        }
+        //holder.avatarImageView.setImageResource(avaImage);
+        //holder.statusImageView.setImageResource(staImage);
         //thumbNail.setImageUrl(m.getThumbnailUrl(), imageLoader);
         //source.setText("Wealth Source: " + String.valueOf(m.getSource()));
 
@@ -86,8 +101,8 @@ public class StatusAdapter extends BaseAdapter {
     }
 
     public static class ViewHolder {
-        ImageView statusImageView;
-        ImageView avatarImageView;
+        NetworkImageView statusImageView;
+        NetworkImageView avatarImageView;
         TextView userNameView;
         TextView statusDateView;
         TextView statusTextView;

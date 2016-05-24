@@ -27,7 +27,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.admin.angpangii.Items.User;
+import com.example.admin.angpangii.Adapters.User;
 import com.example.admin.angpangii.R;
 import com.example.admin.angpangii.utils.ConnectionInfo;
 

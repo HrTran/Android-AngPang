@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     android:weightSum="6"
-    tools:context="com.example.admin.angpangii.Fragments.AddChildrenActivity">
+    tools:context=".Activities.AddChildrenActivity">
     
     <LinearLayout
         android:layout_width="match_parent"

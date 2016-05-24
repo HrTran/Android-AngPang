@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <!-- Picture at body -->
-    <ImageView
+    <com.android.volley.toolbox.NetworkImageView
         android:layout_width="fill_parent"
         android:layout_height="240dp"
         android:id="@+id/statusImageId"
@@ -48,7 +48,7 @@
         android:layout_toRightOf="@+id/imageAvatar"
         android:layout_toEndOf="@+id/imageAvatar" />
     <!-- User's ava -->
-    <ImageView
+    <com.android.volley.toolbox.NetworkImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginLeft="7dp"
