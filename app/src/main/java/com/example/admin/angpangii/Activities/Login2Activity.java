@@ -59,7 +59,7 @@ public class Login2Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login3);
+        setContentView(R.layout.activity_login2);
 
         context = getApplicationContext();
 
@@ -110,7 +110,17 @@ public class Login2Activity extends AppCompatActivity {
                 }
             }
         });
-    }
+
+        createAccountTView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Login2Activity.this, RegisterActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+    } // end onCreate
 
     public void getUserInfo (){
         //JsonObjectRequest jsonObjectRequest = new JsonObjectRequest()
@@ -121,11 +131,12 @@ public class Login2Activity extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                resultTView.setText("Response: " + response.toString());
+                //resultTView.setText("Response: " + response.toString());
                 jsonObject =  response;
                 User.getUser().initUser(basicAuth, jsonObject, context);
                 // save data if user choose to remember checkbox
                 User.getUser().rememberUser(context, remember);
+                goToMainScreen();
             }
         }, new Response.ErrorListener() {
 
@@ -154,7 +165,7 @@ public class Login2Activity extends AppCompatActivity {
         Login2Activity.this.finish();
     }
 
-    public boolean isEmail(String email) {
+    public static boolean isEmail(String email) {
         if(email.indexOf(' ') != -1){
             // if email has space, return false
             return false;
@@ -233,7 +244,6 @@ public class Login2Activity extends AppCompatActivity {
             if(c == '1'){
                 resultTView.setText("\"" + c + "\"");
                 getUserInfo();
-                goToMainScreen();
             }else{
                 basicAuth = null;
                 resultTView.setText("\"" + result + "\"" + c);

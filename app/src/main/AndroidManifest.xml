@@ -133,11 +133,13 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
+        <!-- Login activity -->
         <activity
             android:name=".Activities.Login2Activity"
             android:label="@string/title_activity_login2" />
+        <!-- Register activity -->
         <activity android:name=".Activities.RegisterActivity" />
+        <!-- Post status activity -->
         <activity
             android:name=".Activities.CreatePost"
             android:label="@string/title_activity_create_post"
@@ -148,7 +150,7 @@
                 android:value="com.example.admin.angpangii.Activities.MainActivity" />
         </activity>
 
-        <!-- Health activity -->
+        <!-- Subalbum activity -->
         <activity
             android:name=".Activities.SubAlbumActivity"
             android:parentActivityName=".Activities.AlbumActivity">
@@ -158,6 +160,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.admin.angpangii.Activities.AlbumActivity" />
         </activity>
+
+        <activity
+            android:name=".Activities.AddChildrenActivity"
+            android:label="@string/title_activity_add_children"></activity>
+
     </application>
 
 </manifest>

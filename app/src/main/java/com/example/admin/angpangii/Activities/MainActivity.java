@@ -1,6 +1,8 @@
 package com.example.admin.angpangii.Activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -96,7 +99,23 @@ public class MainActivity extends AppCompatActivity {
                             else if (drawerItem.getIdentifier() == 3) { intent = new Intent(MainActivity.this, AlbumActivity.class); }
                             else if (drawerItem.getIdentifier() == 4) {intent = new Intent(MainActivity.this, MenuActivity.class);}
                             else if (drawerItem.getIdentifier() == 8) {intent = new Intent(MainActivity.this, SettingActivity.class);}
-                            else if (drawerItem.getIdentifier() == 9) {intent = new Intent(MainActivity.this, LogoutActivity.class);}
+                            else if (drawerItem.getIdentifier() == 9) {
+                                // if user choose logout,
+                                // delete saved information on disk
+                                Context context = getApplicationContext();
+                                SharedPreferences preferenceSettings = context.getSharedPreferences(
+                                        context.getString(R.string.preference_file_key),
+                                        context.MODE_PRIVATE
+                                );
+                                SharedPreferences.Editor preferenceEditor = preferenceSettings.edit();
+                                preferenceEditor.putString("basicAuth", "");
+                                preferenceEditor.putInt("id", -1);
+                                preferenceEditor.putInt("type", 0);
+                                preferenceEditor.commit();
+
+                                // navigate user to login screen
+                                intent = new Intent(MainActivity.this, Login2Activity.class);
+                            }
                             if (intent != null){ MainActivity.this.startActivity(intent);}
                         }
                         //we do not consume the event and want the Drawer to continue with the event chain

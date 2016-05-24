@@ -2,6 +2,7 @@ package com.example.admin.angpangii.Adapters;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.admin.angpangii.R;
@@ -25,6 +26,7 @@ public class User {
         this.basicAuth = basicAuth;
         try {
             this.id = jsonObject.getInt("id");
+            Log.d("save id", String.valueOf(this.id));
             this.type = jsonObject.getInt("type");
         } catch (Exception e) {
             Toast.makeText(context, "Parsing json error", Toast.LENGTH_LONG);
