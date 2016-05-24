@@ -110,7 +110,17 @@ public class Login2Activity extends AppCompatActivity {
                 }
             }
         });
-    }
+
+        createAccountTView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Login2Activity.this, RegisterActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+    } // end onCreate
 
     public void getUserInfo (){
         //JsonObjectRequest jsonObjectRequest = new JsonObjectRequest()
@@ -154,7 +164,7 @@ public class Login2Activity extends AppCompatActivity {
         Login2Activity.this.finish();
     }
 
-    public boolean isEmail(String email) {
+    public static boolean isEmail(String email) {
         if(email.indexOf(' ') != -1){
             // if email has space, return false
             return false;
