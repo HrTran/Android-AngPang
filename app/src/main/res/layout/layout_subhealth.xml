@@ -29,11 +29,11 @@
     <View android:id="@id/view1G" android:background="@color/main_color_gray" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_marginTop="3.0dip" android:layout_marginBottom="3.0dip" />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="240dp"
         android:orientation="horizontal">
         <!-- Left -->
         <LinearLayout
-            android:layout_width="118dp"
+            android:layout_width="148dp"
             android:layout_height="match_parent"
             android:orientation="vertical">
             <!-- Mood -->
@@ -42,6 +42,7 @@
                 android:layout_height="wrap_content"
                 android:text="Mood"
                 android:textStyle="bold"
+                android:textSize="@dimen/textSizeLarge_openSource"
                 android:id="@+id/textM"
                 android:layout_marginLeft="15dp"
                 android:layout_weight="1"
@@ -53,6 +54,7 @@
                 android:layout_height="wrap_content"
                 android:text="Health"
                 android:textStyle="bold"
+                android:textSize="@dimen/textSizeLarge_openSource"
                 android:id="@+id/textH"
                 android:layout_marginLeft="15dp"
                 android:layout_weight="1"
@@ -63,6 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Temperature"
+                android:textSize="@dimen/textSizeLarge_openSource"
                 android:textStyle="bold"
                 android:id="@+id/textT"
                 android:layout_marginLeft="15dp"
@@ -75,6 +78,7 @@
                 android:layout_height="wrap_content"
                 android:text="Sleep"
                 android:textStyle="bold"
+                android:textSize="@dimen/textSizeLarge_openSource"
                 android:id="@+id/textS"
                 android:layout_marginLeft="15dp"
                 android:layout_weight="1"
@@ -87,6 +91,7 @@
                 android:text="Food"
                 android:textStyle="bold"
                 android:id="@+id/textB"
+                android:textSize="@dimen/textSizeLarge_openSource"
                 android:layout_marginLeft="15dp"
                 android:layout_weight="1"
                 android:gravity="center" />
@@ -102,27 +107,58 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="horizontal">
-                <TextView
+                <ViewSwitcher
+                    android:id="@+id/txt_switcherM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Normal"
-                    android:gravity="center"
-                    android:id="@+id/comM"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginStart="30dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Edit"
-                    android:id="@+id/editM"
-                    android:textColor="#000000"
-                    android:background="@drawable/button1"
-                    android:gravity="center"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true" />
+                    android:layout_marginStart="30dp"
+                    android:layout_centerVertical="true">
+                    <TextView
+                        android:id="@+id/comM"
+                        android:clickable="true"
+                        android:textSize="@dimen/textSizeLarge_openSource"
+                        android:text="Good"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content" />
+                    <EditText
+                        android:id="@+id/hidden_comM"
+                        android:background="#ffffff"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Good" />
+                </ViewSwitcher>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Edit"
+                        android:onClick="onClickNext"
+                        android:id="@+id/editM"
+                        android:textColor="#000000"
+                        android:background="@drawable/button1"
+                        android:gravity="center"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Done"
+                        android:onClick="onClickPrevious"
+                        android:id="@+id/hidden_editM"
+                        android:textColor="#000000"
+                        android:background="@drawable/button1"
+                        android:gravity="center"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:visibility="invisible"/>
+
             </RelativeLayout>
             <View android:id="@id/view1G" android:background="@color/main_color_gray" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_marginTop="3.0dip" android:layout_marginBottom="3.0dip" />
             <RelativeLayout
@@ -130,28 +166,59 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="horizontal">
-                <TextView
+                <ViewSwitcher
+                    android:id="@+id/txt_switcherH"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Good"
-                    android:id="@+id/comH"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginStart="30dp"/>
+                    android:layout_marginStart="30dp"
+                    android:layout_centerVertical="true">
+                    <TextView
+                        android:id="@+id/comH"
+                        android:clickable="true"
+                        android:textSize="@dimen/textSizeLarge_openSource"
+                        android:text="Normal"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content" />
+                    <EditText
+                        android:id="@+id/hidden_comH"
+                        android:background="#ffffff"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Normal" />
+                </ViewSwitcher>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Edit"
-                    android:id="@+id/editH"
-                    android:textColor="#000000"
-                    android:background="@drawable/button1"
-                    android:gravity="center_vertical"
-                    android:textAlignment="center"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Edit"
+                        android:id="@+id/editH"
+                        android:onClick="onClickNext"
+                        android:textColor="#000000"
+                        android:background="@drawable/button1"
+                        android:gravity="center"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Done"
+                        android:onClick="onClickPrevious"
+                        android:id="@+id/hidden_editH"
+                        android:textColor="#000000"
+                        android:background="@drawable/button1"
+                        android:gravity="center"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:visibility="invisible"/>
+
             </RelativeLayout>
             <View android:id="@id/view1G" android:background="@color/main_color_gray" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_marginTop="3.0dip" android:layout_marginBottom="3.0dip" />
             <RelativeLayout
@@ -159,28 +226,59 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="horizontal">
-                <TextView
+                <ViewSwitcher
+                    android:id="@+id/txt_switcherT"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="37 Celcius"
-                    android:id="@+id/comT"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginStart="30dp"/>
+                    android:layout_marginStart="30dp"
+                    android:layout_centerVertical="true">
+                    <TextView
+                        android:id="@+id/comT"
+                        android:clickable="true"
+                        android:textSize="@dimen/textSizeLarge_openSource"
+                        android:text="37 degree"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content" />
+                    <EditText
+                        android:id="@+id/hidden_comT"
+                        android:background="#ffffff"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Normal" />
+                </ViewSwitcher>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Edit"
-                    android:id="@+id/editT"
-                    android:textColor="#000000"
-                    android:background="@drawable/button1"
-                    android:gravity="center_vertical"
-                    android:textAlignment="center"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Edit"
+                        android:onClick="onClickNext"
+                        android:id="@+id/editT"
+                        android:textColor="#000000"
+                        android:background="@drawable/button1"
+                        android:gravity="center"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Done"
+                        android:onClick="onClickPrevious"
+                        android:id="@+id/hidden_editT"
+                        android:textColor="#000000"
+                        android:background="@drawable/button1"
+                        android:gravity="center"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:visibility="invisible"/>
+
             </RelativeLayout>
             <View android:id="@id/view1G" android:background="@color/main_color_gray" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_marginTop="3.0dip" android:layout_marginBottom="3.0dip" />
             <RelativeLayout
@@ -188,28 +286,59 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="horizontal">
-                <TextView
+                <ViewSwitcher
+                    android:id="@+id/my_switcherS"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1h30"
-                    android:id="@+id/comS"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginStart="30dp"/>
+                    android:layout_marginStart="30dp"
+                    android:layout_centerVertical="true">
+                    <TextView
+                        android:id="@+id/comS"
+                        android:clickable="true"
+                        android:textSize="@dimen/textSizeLarge_openSource"
+                        android:text="13h30"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content" />
+                    <EditText
+                        android:id="@+id/hidden_comS"
+                        android:background="#ffffff"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="13h30" />
+                </ViewSwitcher>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Edit"
-                    android:id="@+id/editS"
-                    android:textColor="#000000"
-                    android:background="@drawable/button1"
-                    android:gravity="center_vertical"
-                    android:textAlignment="center"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Edit"
+                        android:onClick="onClickNext"
+                        android:id="@+id/editS"
+                        android:textColor="#000000"
+                        android:background="@drawable/button1"
+                        android:gravity="center"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Done"
+                        android:onClick="onClickPrevious"
+                        android:id="@+id/hidden_editS"
+                        android:textColor="#000000"
+                        android:background="@drawable/button1"
+                        android:gravity="center"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:visibility="invisible"/>
+
             </RelativeLayout>
             <View android:id="@id/view1G" android:background="@color/main_color_gray" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_marginTop="3.0dip" android:layout_marginBottom="3.0dip" />
             <RelativeLayout
@@ -217,28 +346,59 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="horizontal">
-                <TextView
+                <ViewSwitcher
+                    android:id="@+id/my_switcherF"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Lunch"
-                    android:id="@+id/comF"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginStart="30dp"/>
+                    android:layout_marginStart="30dp"
+                    android:layout_centerVertical="true">
+                    <TextView
+                        android:id="@+id/comF"
+                        android:clickable="true"
+                        android:textSize="@dimen/textSizeLarge_openSource"
+                        android:text="Lunch"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content" />
+                    <EditText
+                        android:id="@+id/hidden_comF"
+                        android:background="#ffffff"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Lunch" />
+                </ViewSwitcher>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Edit"
-                    android:id="@+id/editB"
-                    android:textColor="#000000"
-                    android:background="@drawable/button1"
-                    android:gravity="center_vertical"
-                    android:textAlignment="center"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Edit"
+                        android:id="@+id/editF"
+                        android:onClick="onClickNext"
+                        android:textColor="#000000"
+                        android:background="@drawable/button1"
+                        android:gravity="center"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Done"
+                        android:onClick="onClickPrevious"
+                        android:id="@+id/hidden_editF"
+                        android:textColor="#000000"
+                        android:background="@drawable/button1"
+                        android:gravity="center"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:visibility="invisible"/>
+
             </RelativeLayout>
 
         </LinearLayout>

@@ -23,9 +23,8 @@ public class TabWallActivity extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_wall, container, false);
-        /*
-        * Display status on Home Activity
-        * */
+
+        // Display status on Home Activity
         List<Status> image_details = getListData();
         final ListView listView = (ListView) view.findViewById(R.id.listW);
         listView.setAdapter(new StatusAdapter(getActivity(), image_details));

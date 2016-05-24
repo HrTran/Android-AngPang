@@ -5,9 +5,13 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewSwitcher;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -46,6 +50,8 @@ public class SubHealthActivity extends HealthActivity {
     private TextView food;
     private TextView childName;
     private int childID;
+    private TextView btnM,btnH,btnT,btnS,btnF;
+    private EditText hidM,hidH,hidT,hidS,hidF;
     //private ImageLoader imageLoader;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
@@ -69,6 +75,60 @@ public class SubHealthActivity extends HealthActivity {
         sleep = (TextView) findViewById(R.id.comS);
         food = (TextView) findViewById(R.id.comF);
 
+        btnM = (TextView) findViewById(R.id.editM);
+        btnH = (TextView) findViewById(R.id.editH);
+        btnT = (TextView) findViewById(R.id.editT);
+        btnS = (TextView) findViewById(R.id.editS);
+        btnF = (TextView) findViewById(R.id.editF);
+
+        hidM = (EditText) findViewById(R.id.hidden_comM);
+        hidH = (EditText) findViewById(R.id.hidden_comH);
+        hidT = (EditText) findViewById(R.id.hidden_comT);
+        hidS = (EditText) findViewById(R.id.hidden_comS);
+        hidF = (EditText) findViewById(R.id.hidden_comF);
+
+        btnM.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { onClickNext("M");hidM.setVisibility(View.VISIBLE);btnM.setVisibility(View.INVISIBLE);}
+        });
+        btnH.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { onClickNext("H");hidH.setVisibility(View.VISIBLE);btnH.setVisibility(View.INVISIBLE); }
+        });
+        btnT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { onClickNext("T");btnT.setVisibility(View.INVISIBLE);hidT.setVisibility(View.VISIBLE);}
+        });
+        btnS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { onClickNext("S");btnS.setVisibility(View.INVISIBLE);hidS.setVisibility(View.VISIBLE); }
+        });
+        btnF.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { onClickNext("F");btnF.setVisibility(View.INVISIBLE);hidF.setVisibility(View.VISIBLE); }
+        });
+
+        hidM.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { onClickPrevious("M");hidM.setVisibility(View.INVISIBLE);btnM.setVisibility(View.VISIBLE); }
+        });
+        hidH.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { onClickPrevious("H");hidH.setVisibility(View.INVISIBLE);btnH.setVisibility(View.VISIBLE); }
+        });
+        hidT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { onClickPrevious("T");hidT.setVisibility(View.INVISIBLE);btnT.setVisibility(View.VISIBLE); }
+        });
+        hidS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { onClickPrevious("S");hidS.setVisibility(View.INVISIBLE);btnS.setVisibility(View.VISIBLE); }
+        });
+        hidF.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { onClickPrevious("F");hidF.setVisibility(View.INVISIBLE);btnF.setVisibility(View.VISIBLE); }
+        });
+
         /*jsonImage = "http://10.0.3.2:8000/v1/get/child_picture/3";
         imageLoader = CustomVolleyRequest.getInstance(this.getApplicationContext()).getImageLoader();
         imageLoader.get(jsonImage,
@@ -77,8 +137,6 @@ public class SubHealthActivity extends HealthActivity {
         childAva.setImageUrl(jsonImage, imageLoader);*/
         // Retrieves an image specified by the URL, displays it in the UI.
 
-
-
         url = "http://10.0.3.2:8000/v1/get/child_info/" + childID;
         pDialog = new ProgressDialog(this);
         pDialog.setMessage("Please wait...");
@@ -86,6 +144,43 @@ public class SubHealthActivity extends HealthActivity {
 
         ChildAvaRequest();
         makeJsonObjectRequest();
+    }
+
+    /*
+    * This method's purpose is making edit at cell of table
+    * @param label is label of each category mood(M), temp(T), v..v...
+    * */
+    public void onClickNext(String label) {
+        // Change TextView to EditText with beginning of TextView's content
+        String textSwitcher = "txt_switcher" + label;
+        ViewSwitcher txtswitcher = (ViewSwitcher) findViewById(getResources().getIdentifier(textSwitcher, "id", getPackageName()));
+        txtswitcher.showNext();
+        String comment = "com" + label;
+        TextView myText = (TextView) txtswitcher.findViewById(getResources().getIdentifier(comment, "id", getPackageName()));
+        String hidComment = "hidden_com" + label;
+        TextView myHidText = (TextView) txtswitcher.findViewById(getResources().getIdentifier(hidComment, "id", getPackageName()));
+        myHidText.setText(myText.getText().toString());
+    }
+
+    /*
+    * This method's purpose is comming back from edit
+    * @param label is label of each category mood(M), temp(T), v..v...
+    * */
+    public void onClickPrevious(String label) {
+        // Change TextView to EditText with beginning of TextView's content
+        String textSwitcher = "txt_switcher" + label;
+        ViewSwitcher txtswitcher = (ViewSwitcher) findViewById(getResources().getIdentifier(textSwitcher, "id", getPackageName()));
+        txtswitcher.showNext();
+        String comment = "com" + label;
+        TextView myText = (TextView) txtswitcher.findViewById(getResources().getIdentifier(comment, "id", getPackageName()));
+        String hidComment = "hidden_com" + label;
+        TextView myHidText = (TextView) txtswitcher.findViewById(getResources().getIdentifier(hidComment, "id", getPackageName()));
+        myText.setText(myHidText.getText().toString());
+
+        /*// Change button from "Done" to "Edit"
+        String buttonSwitcher = "btn_switcher" + label;
+        ViewSwitcher btnswitcher = (ViewSwitcher) findViewById(getResources().getIdentifier(buttonSwitcher, "id", getPackageName()));
+        btnswitcher.showNext();*/
     }
 
     /**

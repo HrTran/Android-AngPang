@@ -5,17 +5,14 @@
     tools:context=".Activities.LoginActivity"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <LinearLayout
-        android:orientation="vertical"
+    <RelativeLayout
+
         android:id="@id/main"
         android:background="@drawable/bg"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
         <!-- Login progress -->
 
-
-
-        <ScrollView android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0" android:id="@+id/login_form">
 
             <LinearLayout
                 android:gravity="center_horizontal"
@@ -25,7 +22,10 @@
                 android:paddingRight="@dimen/pad_15dp"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom">
+                android:layout_gravity="bottom"
+                android:layout_above="@+id/linearLayout2"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -47,6 +47,7 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/prompt_email"
                         android:inputType="textEmailAddress"
+                        android:textColor="#ffffff"
                         android:maxLines="1"
                         android:singleLine="true" />
 
@@ -60,7 +61,8 @@
                         android:id="@+id/passwordText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/prompt_password"
+                        android:hint="Password"
+                        android:textColor="#ffffff"
                         android:imeActionId="@+id/login"
                         android:imeActionLabel="@string/action_sign_in_short"
                         android:imeOptions="actionUnspecified"
@@ -79,10 +81,11 @@
                 </LinearLayout>
                 <Button android:textSize="@dimen/txt_14sp" android:textColor="#ffffff" android:gravity="right" android:id="@id/btnForgot" android:background="@color/transparent" android:padding="@dimen/pad_5dp" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="" />
             </LinearLayout>
-        </ScrollView>
-        <LinearLayout android:gravity="center" android:orientation="horizontal" android:background="@drawable/reg_bg" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true">
-        </LinearLayout>
-    </LinearLayout>
+
+        <LinearLayout android:gravity="center" android:orientation="horizontal" android:background="@drawable/reg_bg" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true"
+            android:id="@+id/linearLayout2" />
+
+    </RelativeLayout>
     <LinearLayout android:gravity="center" android:orientation="horizontal" android:id="@id/btnReg" android:background="@drawable/reg_bg" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true">
         <TextView android:textSize="@dimen/txt_14sp" android:textColor="@color/white" android:id="@id/textView2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="@dimen/pad_3dp" android:text="@string/no_account" />
         <TextView android:textSize="@dimen/txt_14sp" android:textStyle="bold" android:textColor="@color/main_color_gray" android:id="@id/createAccoutTView" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/register_now" />
