@@ -219,11 +219,6 @@ public class HealthActivity extends AppCompatActivity implements AdapterView.OnI
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            // Showing progress dialog
-            pDialog = new ProgressDialog(HealthActivity.this);
-            pDialog.setMessage("Please wait...");
-            pDialog.setCancelable(false);
-            pDialog.show();
         }
 
         @Override
@@ -234,7 +229,6 @@ public class HealthActivity extends AppCompatActivity implements AdapterView.OnI
                         @Override
                         public void onResponse(JSONArray response) {
                             Log.d(TAG, response.toString());
-                            hidePDialog();
 
                             // Parsing json
                             for (int i = 0; i < response.length(); i++) {

@@ -1,31 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-    android:orientation="vertical">
-	<TextView
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:textSize="@dimen/textSizeLarge_openSource"
-        android:hint="Class 1" />
-    <TextView
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="120dip">
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/imageAlbum"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nhân chuyến viếng thăm của Tổng thông Mỹ Barrack Obama"
-        android:layout_marginLeft="7dp"
-        android:layout_marginRight="7dp"
-        android:textColorHint="#000000"/>
-    <GridView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/grid"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:horizontalSpacing="4dip"
-        android:numColumns="3"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="4dip"
-        android:padding="4dip" />
-
-</LinearLayout>
-
+        android:layout_height="120dip"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/descr_image"
+        android:scaleType="centerCrop" />
+</FrameLayout>

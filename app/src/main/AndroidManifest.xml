@@ -115,7 +115,7 @@
                 android:value="com.example.admin.angpangii.Activities.MainActivity" />
         </activity>
 
-        <!-- Health activity -->
+        <!-- SubHealth activity -->
         <activity
             android:name=".Activities.SubHealthActivity"
             android:parentActivityName=".Activities.HealthActivity">
@@ -140,7 +140,24 @@
         <activity android:name=".Activities.RegisterActivity" />
         <activity
             android:name=".Activities.CreatePost"
-            android:label="@string/title_activity_create_post"></activity>
+            android:label="@string/title_activity_create_post"
+            android:parentActivityName=".Activities.MainActivity">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.admin.angpangii.Activities.MainActivity" />
+        </activity>
+
+        <!-- Health activity -->
+        <activity
+            android:name=".Activities.SubAlbumActivity"
+            android:parentActivityName=".Activities.AlbumActivity">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.admin.angpangii.Activities.AlbumActivity" />
+        </activity>
     </application>
 
 </manifest>
